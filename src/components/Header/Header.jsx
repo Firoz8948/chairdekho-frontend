@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 import { Menu, X, ShoppingCart, User, ArrowRight } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import authService from '@/lib/services/auth';
+import { ASSETS } from '@/lib/assets';
 import styles from './header.module.css';
 
 const DRAWER_ANIMATION_MS = 300;
@@ -84,12 +85,13 @@ export default function Header() {
             {/* Desktop Extreme Left: text_logo.svg */}
             <Link href="/" className={styles.textLogoLink}>
               <Image
-                src="/assets/text_logo.svg"
+                src={ASSETS.textLogo}
                 alt="Lansdowne"
                 width={136}
                 height={46}
                 className={styles.textLogoImg}
                 priority
+                unoptimized
               />
             </Link>
 
@@ -111,12 +113,13 @@ export default function Header() {
           <div className={styles.centerSection}>
             <Link href="/" className={styles.mainLogoLink} aria-label="Lansdowne Home">
               <Image
-                src="/assets/main_logo.svg"
+                src={ASSETS.mainLogo}
                 alt="Lansdowne Emblem"
                 width={64}
                 height={64}
                 className={styles.mainLogoImg}
                 priority
+                unoptimized
               />
             </Link>
           </div>
@@ -171,11 +174,12 @@ export default function Header() {
             <div className={styles.drawerHeader}>
               <Link href="/" className={styles.drawerLogoLink} onClick={closeMobileMenu}>
                 <Image
-                  src="/assets/text_logo.svg"
+                  src={ASSETS.textLogo}
                   alt="Lansdowne"
                   width={140}
                   height={28}
                   className={styles.textLogoImg}
+                  unoptimized
                 />
               </Link>
               <button

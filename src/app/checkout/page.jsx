@@ -2,8 +2,9 @@ import { Suspense } from 'react';
 import CheckoutScreen from './CheckoutScreen';
 
 export const metadata = {
-  title: 'Checkout | Lansdowne',
-  description: 'Complete your Lansdowne order securely.',
+  title: 'Checkout',
+  description: 'Complete your Lansdowne Leather order securely.',
+  robots: { index: false, follow: false },
 };
 
 export default function CheckoutPage() {

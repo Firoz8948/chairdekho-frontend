@@ -3,12 +3,14 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import PageHeroBanner from '@/components/PageHeroBanner/PageHeroBanner';
 import { Shield, Gem, Leaf, Heart } from 'lucide-react';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: 'About Us | Lansdowne',
+export const metadata = pageMetadata({
+  title: 'About Us | Lansdowne Leather – Genuine Leather Goods from Uttarakhand',
   description:
-    'Handpicked leather goods from the hills of Uttarakhand. Born in Lansdowne, inspired by mountains, crafted for everyday journeys.',
-};
+    'Handpicked genuine leather wallets, bags and belts from the hills of Uttarakhand. Born in Lansdowne, inspired by mountains, crafted for everyday journeys.',
+  path: '/about',
+});
 
 const values = [
   {

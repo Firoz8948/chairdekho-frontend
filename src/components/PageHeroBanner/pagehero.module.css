@@ -11,7 +11,7 @@
 .heroBg {
   position: absolute;
   inset: 0;
-  background-image: url('/images/banners/pages_banner.png');
+  background-image: url('https://lansdowne-cdn.b-cdn.net/Basic_Assets/pages_banner.png');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;

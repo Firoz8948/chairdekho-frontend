@@ -2,12 +2,14 @@ import styles from './terms.module.css';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import PageHeroBanner from '@/components/PageHeroBanner/PageHeroBanner';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: 'Terms & Conditions | Lansdowne',
+export const metadata = pageMetadata({
+  title: 'Terms & Conditions | Lansdowne Leather',
   description:
-    'Read the terms and conditions governing your use of the Lansdowne website and purchases.',
-};
+    'Read the terms and conditions governing your use of the Lansdowne Leather website and purchases.',
+  path: '/policy/terms-and-conditions',
+});
 
 export default function TermsAndConditionsPage() {
   return (

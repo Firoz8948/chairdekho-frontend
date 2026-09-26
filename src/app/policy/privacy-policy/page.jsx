@@ -2,12 +2,14 @@ import styles from './privacy.module.css';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import PageHeroBanner from '@/components/PageHeroBanner/PageHeroBanner';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: 'Privacy Policy | Lansdowne',
+export const metadata = pageMetadata({
+  title: 'Privacy Policy | Lansdowne Leather',
   description:
-    'Learn how Lansdowne collects, uses, and protects your personal information when you shop with us.',
-};
+    'Learn how Lansdowne Leather collects, uses, and protects your personal information when you shop with us.',
+  path: '/policy/privacy-policy',
+});
 
 export default function PrivacyPolicyPage() {
   return (

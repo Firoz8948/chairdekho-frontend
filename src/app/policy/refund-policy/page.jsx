@@ -2,12 +2,14 @@ import styles from './refund.module.css';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import PageHeroBanner from '@/components/PageHeroBanner/PageHeroBanner';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: 'Returns & Refunds Policy | Lansdowne',
+export const metadata = pageMetadata({
+  title: 'Returns & Refunds Policy | Lansdowne Leather',
   description:
-    'Learn about Lansdowne\'s return eligibility, refund timelines, exchange process, and how to initiate a return.',
-};
+    'Learn about Lansdowne Leather return eligibility, refund timelines, exchange process, and how to initiate a return.',
+  path: '/policy/refund-policy',
+});
 
 export default function RefundPolicyPage() {
   return (

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import styles from '../home.module.css';
 import ShopNowButton from '@/components/ShopNowButton';
+import { ASSETS } from '@/lib/assets';
 
 export default function Hero() {
   return (
@@ -8,7 +9,7 @@ export default function Hero() {
       {/* ================= TOP (MOBILE) / LEFT (DESKTOP): Branded Copy ================= */}
       <div className={styles.heroHalfLeft}>
         <Image
-          src="/images/banners/hero_left.webp"
+          src={ASSETS.heroLeft}
           alt="Branded Leather Texture"
           fill
           priority
@@ -33,7 +34,7 @@ export default function Hero() {
       {/* ================= BOTTOM (MOBILE) / RIGHT (DESKTOP): Model & CTA ================= */}
       <div className={styles.heroHalfRight}>
         <Image
-          src="/images/banners/hero_right.webp"
+          src={ASSETS.heroRight}
           alt="Lansdowne Premium Leather Collection"
           fill
           priority

@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import toast from 'react-hot-toast';
 import { ArrowLeft } from 'lucide-react';
 import authService from '@/lib/services/auth';
+import { ASSETS } from '@/lib/assets';
 import styles from './login.module.css';
 
 const OTP_LENGTH = 4;
@@ -229,7 +230,7 @@ export default function CustomerLoginScreen() {
     <div className={styles.page}>
       <aside className={styles.heroPanel}>
         <Image
-          src="/images/banners/hero_left.webp"
+          src={ASSETS.heroLeft}
           alt=""
           fill
           priority
@@ -253,7 +254,7 @@ export default function CustomerLoginScreen() {
 
       <div className={styles.mobileBg} aria-hidden="true">
         <Image
-          src="/images/banners/hero_left.webp"
+          src={ASSETS.heroLeft}
           alt=""
           fill
           priority

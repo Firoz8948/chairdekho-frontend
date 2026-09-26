@@ -3,12 +3,14 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import PageHeroBanner from '@/components/PageHeroBanner/PageHeroBanner';
 import { Mail, Phone, Clock, MapPin } from 'lucide-react';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: 'Contact Us | Lansdowne',
+export const metadata = pageMetadata({
+  title: 'Contact Us | Lansdowne Leather',
   description:
-    'Get in touch with the Lansdowne team. Reach us via email, phone, or send us a message directly.',
-};
+    'Get in touch with the Lansdowne Leather team for orders, returns or product questions. Reach us via email, phone, or send us a message directly.',
+  path: '/contact-us',
+});
 
 const contactInfo = [
   {

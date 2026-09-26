@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { ASSETS } from '@/lib/assets';
 import styles from './footer.module.css';
 
 export default function Footer() {
@@ -9,11 +10,12 @@ export default function Footer() {
         <div className={styles.brandCol}>
           <Link href="/" className={styles.brandLogoLink}>
             <Image
-              src="/assets/text_logo.svg"
+              src={ASSETS.textLogo}
               alt="Lansdowne"
               width={180}
               height={40}
               className={styles.brandLogo}
+              unoptimized
             />
           </Link>
           <p className={styles.brandDesc}>

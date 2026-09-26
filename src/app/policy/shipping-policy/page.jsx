@@ -2,12 +2,14 @@ import styles from './shipping.module.css';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import PageHeroBanner from '@/components/PageHeroBanner/PageHeroBanner';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: 'Shipping Policy | Lansdowne',
+export const metadata = pageMetadata({
+  title: 'Shipping Policy | Lansdowne Leather',
   description:
-    'Everything you need to know about Lansdowne\'s shipping timelines, charges, tracking, and delivery coverage across India.',
-};
+    'Everything you need to know about Lansdowne Leather shipping timelines, charges, tracking, and delivery coverage across India.',
+  path: '/policy/shipping-policy',
+});
 
 export default function ShippingPolicyPage() {
   return (

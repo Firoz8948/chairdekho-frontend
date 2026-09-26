@@ -16,6 +16,7 @@ import ProductColorEditor from '@/components/ProductColorEditor/ProductColorEdit
 import ImageLibraryPicker from '@/components/ImageLibraryPicker/ImageLibraryPicker';
 import SortableImageThumbs from '@/components/SortableImageThumbs/SortableImageThumbs';
 import styles from '../products.module.css';
+import SeoFields from '../SeoFields';
 
 const emptyOption = () => ({
   name: '',
@@ -63,6 +64,8 @@ export default function AddProductPage() {
   const [isActive, setIsActive] = useState(true);
   const [isFeatured, setIsFeatured] = useState(false);
   const [metafieldValues, setMetafieldValues] = useState({});
+  const [seoTitle, setSeoTitle] = useState('');
+  const [seoDescription, setSeoDescription] = useState('');
   const [variants, setVariants] = useState([]);
   const [imageFiles, setImageFiles] = useState([]);
   const [imagePreviews, setImagePreviews] = useState([]);
@@ -286,6 +289,8 @@ export default function AddProductPage() {
           hex: c.hex,
         })),
       color_sibling_ids: siblingIds.map((id) => Number(id)),
+      seo_title: seoTitle.trim(),
+      seo_description: seoDescription.trim(),
     };
   };
 
@@ -817,6 +822,17 @@ export default function AddProductPage() {
             ))
           )}
         </section>
+
+        <SeoFields
+          name={name}
+          description={description}
+          price={price}
+          metafields={metafieldValues}
+          seoTitle={seoTitle}
+          seoDescription={seoDescription}
+          onSeoTitleChange={setSeoTitle}
+          onSeoDescriptionChange={setSeoDescription}
+        />
         </div>
 
         <aside className={styles.formSidebar}>

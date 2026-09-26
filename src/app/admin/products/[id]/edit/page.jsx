@@ -16,6 +16,7 @@ import ProductColorEditor from '@/components/ProductColorEditor/ProductColorEdit
 import ImageLibraryPicker from '@/components/ImageLibraryPicker/ImageLibraryPicker';
 import SortableImageThumbs from '@/components/SortableImageThumbs/SortableImageThumbs';
 import styles from '../../products.module.css';
+import SeoFields from '../../SeoFields';
 
 const emptyOption = () => ({
   name: '',
@@ -66,6 +67,9 @@ export default function EditProductPage() {
   const [isActive, setIsActive] = useState(true);
   const [isFeatured, setIsFeatured] = useState(false);
   const [metafieldValues, setMetafieldValues] = useState({});
+  const [seoTitle, setSeoTitle] = useState('');
+  const [seoDescription, setSeoDescription] = useState('');
+  const [productSlug, setProductSlug] = useState('');
   const [variants, setVariants] = useState([]);
   const [existingImages, setExistingImages] = useState([]);
   const [imageFiles, setImageFiles] = useState([]);
@@ -127,6 +131,9 @@ export default function EditProductPage() {
         setHeightCm(product.height_cm != null ? String(product.height_cm) : '');
         setIsActive(product.is_active !== false);
         setIsFeatured(Boolean(product.is_featured));
+        setSeoTitle(product.seo_title || '');
+        setSeoDescription(product.seo_description || '');
+        setProductSlug(product.slug || '');
         setColors(
           Array.isArray(product.colors)
             ? product.colors.map((c) => ({
@@ -384,6 +391,8 @@ export default function EditProductPage() {
           hex: c.hex,
         })),
       color_sibling_ids: siblingIds.map((id) => Number(id)),
+      seo_title: seoTitle.trim(),
+      seo_description: seoDescription.trim(),
     };
   };
 
@@ -994,6 +1003,18 @@ export default function EditProductPage() {
               ))
             )}
           </section>
+
+          <SeoFields
+            name={name}
+            description={description}
+            price={price}
+            metafields={metafieldValues}
+            slug={productSlug}
+            seoTitle={seoTitle}
+            seoDescription={seoDescription}
+            onSeoTitleChange={setSeoTitle}
+            onSeoDescriptionChange={setSeoDescription}
+          />
         </div>
 
         <aside className={styles.formSidebar}>

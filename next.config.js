@@ -18,6 +18,13 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      { source: '/home', destination: '/', permanent: true },
+      { source: '/products', destination: '/shop', permanent: true },
+      { source: '/contact', destination: '/contact-us', permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

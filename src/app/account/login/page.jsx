@@ -2,8 +2,9 @@ import { Suspense } from 'react';
 import CustomerLoginScreen from './CustomerLoginScreen';
 
 export const metadata = {
-  title: 'Login | Lansdowne',
-  description: 'Sign in to your Lansdowne account with mobile OTP.',
+  title: 'Login',
+  description: 'Sign in to your Lansdowne Leather account with mobile OTP.',
+  robots: { index: false, follow: true },
 };
 
 export default function CustomerLoginPage() {

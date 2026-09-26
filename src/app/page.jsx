@@ -1,9 +1,12 @@
 import HomeScreen from './home/HomeScreen';
+import { HOME_DESCRIPTION, HOME_TITLE, SITE_KEYWORDS, pageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: 'Lansdowne | Premium Curated Collections',
-  description: 'Handcrafted luxury, designed for distinction and everyday excellence.',
-};
+export const metadata = pageMetadata({
+  title: HOME_TITLE,
+  description: HOME_DESCRIPTION,
+  path: '/',
+  keywords: SITE_KEYWORDS,
+});
 
 export default function Page() {
   return <HomeScreen />;
