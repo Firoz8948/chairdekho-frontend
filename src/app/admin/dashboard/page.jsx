@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import adminService from '@/lib/services/admin';
 import styles from './dashboard.module.css';
-import { StatsCard, RecentActivity } from './components';
+import { StatsCard, SalesChart } from './components';
 
 const formatPrice = (value) => {
   const num = Number(value);
@@ -57,7 +57,7 @@ export default function DashboardPage() {
         />
       </div>
 
-      <RecentActivity orders={stats?.recent_orders || []} loading={loading} />
+      <SalesChart />
     </div>
   );
 }

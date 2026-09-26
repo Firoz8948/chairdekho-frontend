@@ -48,14 +48,6 @@
   color: var(--text-main);
 }
 
-.activityCard {
-  background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: clamp(24px, 3vw, 32px);
-  box-shadow: var(--shadow-sm);
-}
-
 .activityTitle {
   font-size: 1.15rem;
   font-weight: 700;
@@ -73,33 +65,223 @@
   font-size: 0.95rem;
 }
 
-.activityList {
+.salesCard {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: clamp(20px, 3vw, 32px);
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 20px;
 }
 
-.activityItem {
+.salesHeader {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 16px;
-  padding: 14px 0;
-  border-bottom: 1px solid #e2e8f0;
+  flex-wrap: wrap;
 }
 
-.activityItem:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+.salesCaption {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
 }
 
-.activityMeta {
-  margin-top: 4px;
+.salesSummary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.salesTotal {
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.changePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.changeUp {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.changeDown {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.changeFlat {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.changeHint {
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.salesFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.segmented {
+  display: inline-flex;
+  padding: 3px;
+  gap: 2px;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.segmentBtn {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
   font-size: 0.8rem;
-  color: #64748b;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 7px !important;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+  white-space: nowrap;
 }
 
-.activityRight {
-  text-align: right;
+.segmentBtn:hover {
+  color: var(--text-main);
+}
+
+.segmentBtnActive {
+  background: #ffffff;
+  color: var(--accent);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.1);
+}
+
+.chartArea {
+  position: relative;
+}
+
+.chartInner {
+  width: 100%;
+  height: clamp(260px, 32vw, 360px);
+  transition: opacity 0.2s ease;
+}
+
+.chartLoading {
+  opacity: 0.45;
+}
+
+.chartSkeleton {
+  width: 100%;
+  height: clamp(260px, 32vw, 360px);
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, #f1f5f9 25%, #f8fafc 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: chartShimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes chartShimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.chartEmptyNote {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px dashed var(--border);
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.chartTooltip {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 10px 12px;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2);
+  min-width: 130px;
+}
+
+.chartTooltipDate {
+  font-size: 0.72rem;
+  color: #94a3b8;
   font-weight: 600;
-  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.chartTooltipValue {
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin-top: 2px;
+}
+
+.chartTooltipMeta {
+  font-size: 0.75rem;
+  color: #cbd5e1;
+  margin-top: 2px;
+}
+
+.salesFooter {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-light);
+}
+
+.salesFooter > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.salesFooter strong {
+  font-size: 1rem;
+  color: var(--text-main);
+}
+
+.footerLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  .salesSummary {
+    align-items: flex-start;
+  }
+
+  .salesFooter {
+    grid-template-columns: 1fr;
+  }
 }

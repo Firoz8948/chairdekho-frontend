@@ -9,7 +9,7 @@ const PRINCIPLES = [
   {
     num: '02',
     title: 'Material',
-    desc: 'Chosen for longevity, natural beauty, and feel.',
+    desc: 'Chosen for longevity, genuine leather with 100% Authentic Quality',
   },
   {
     num: '03',

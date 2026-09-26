@@ -706,7 +706,7 @@ function ProductDetailPageInner() {
 
                   <div className={styles.trustIcons}>
                     {[
-                      { src: '/images/authentic_quality.png', label: 'Authentic Quality' },
+                      { src: '/images/authentic_quality.png', label: '100% Genuine Leather' },
                       {
                         src: '/images/made_with_care.png',
                         label: (

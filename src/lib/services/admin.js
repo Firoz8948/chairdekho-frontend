@@ -5,6 +5,10 @@ export const adminService = {
     return apiClient.get('/admin/dashboard/stats');
   },
 
+  async getDashboardSales({ range = '10d', scope = 'all' } = {}) {
+    return apiClient.get('/admin/dashboard/sales', { params: { range, scope } });
+  },
+
   async getAdminProducts(params = {}) {
     return apiClient.get('/admin/products', { params });
   },
