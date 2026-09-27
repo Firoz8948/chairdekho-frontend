@@ -17,16 +17,15 @@ export default function Hero() {
           className={styles.heroBgImg}
         />
         <div className={styles.heroOverlayLeft}>
-          <span className={styles.heroCollectionLabel}>NEW COLLECTION 2026</span>
+          <span className={styles.heroCollectionLabel}>THE LUXURY COLLECTION</span>
           <h1 className={styles.heroTitle}>
-            BRANDED LEATHER
+            CRAFTED FOR TIMELESS STYLE
             <br />
-            <em className={styles.heroTitleItalic}>Essentials</em>
+            <em className={styles.heroTitleItalic}>Crafted to Last</em>
           </h1>
 
           <p className={styles.heroSubtitle}>
-            Handcrafted with precision from authentic leather.
-            Timeless distinction, effortless sophistication.
+            Thoughtfully crafted leather goods with enduring style and character
           </p>
         </div>
       </div>
