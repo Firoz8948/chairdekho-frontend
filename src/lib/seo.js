@@ -379,7 +379,7 @@ export function buildOrganizationJsonLd() {
     '@id': `${SITE_URL}/#organization`,
     name: BRAND,
     url: SITE_URL,
-    logo: ASSETS.mainLogo,
+    logo: absoluteUrl('/icon.png'),
     image: ASSETS.ogImage,
   };
 }

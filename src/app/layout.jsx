@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Arapey } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 import Providers from '@/components/Providers';
 import JsonLd from '@/components/Seo/JsonLd';
+import { ASSETS } from '@/lib/assets';
 import {
   BRAND,
   DEFAULT_OG_IMAGE,
@@ -38,6 +39,15 @@ export const metadata = {
   description: HOME_DESCRIPTION,
   applicationName: BRAND,
   keywords: SITE_KEYWORDS,
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/icon.png', type: 'image/png', sizes: '512x512' },
+      { url: ASSETS.mainLogo, type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: [{ url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }],
+  },
   robots: {
     index: true,
     follow: true,
