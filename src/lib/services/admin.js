@@ -97,6 +97,22 @@ export const adminService = {
     return apiClient.put(`/admin/orders/${orderId}/status`, { status });
   },
 
+  async sendOrderToDelhivery(orderId) {
+    return apiClient.post(`/admin/orders/${orderId}/delhivery`, null, { timeout: 60000 });
+  },
+
+  async getDelhiveryLabel(orderId) {
+    return apiClient.get(`/admin/orders/${orderId}/delhivery/label`, { timeout: 100000 });
+  },
+
+  async cancelDelhiveryShipment(orderId) {
+    return apiClient.post(`/admin/orders/${orderId}/delhivery/cancel`, null, { timeout: 60000 });
+  },
+
+  async trackDelhiveryShipment(orderId) {
+    return apiClient.post(`/admin/orders/${orderId}/delhivery/track`, null, { timeout: 60000 });
+  },
+
   async getAdminPayments(params = {}) {
     return apiClient.get('/admin/payments', { params });
   },

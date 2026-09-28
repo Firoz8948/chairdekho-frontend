@@ -159,6 +159,143 @@
   color: #64748b;
 }
 
+.dlSendBtn,
+.dlSendBtnSmall,
+.dlActionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.dlSendBtn {
+  padding: 10px 16px;
+  border: none;
+  background: #111827;
+  color: #fff;
+  font-size: 0.88rem;
+}
+
+.dlSendBtn:hover:not(:disabled) {
+  background: #1f2937;
+}
+
+.dlSendBtnSmall {
+  padding: 5px 10px;
+  border: 1px solid #111827;
+  background: #fff;
+  color: #111827;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.dlSendBtnSmall:hover:not(:disabled) {
+  background: #111827;
+  color: #fff;
+}
+
+.dlSendBtn:disabled,
+.dlSendBtnSmall:disabled,
+.dlActionBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.dlSentBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #dcfce7;
+  border: 1px solid #86efac;
+  color: #15803d;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dlPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+
+.dlSentRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.dlTick {
+  color: #16a34a;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.dlSentTitle {
+  margin: 0;
+  font-weight: 700;
+  color: #15803d;
+}
+
+.dlSentMeta {
+  margin: 2px 0 0;
+  font-size: 0.82rem;
+  color: #475569;
+}
+
+.dlActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dlActionBtn {
+  padding: 7px 12px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #0f172a;
+  font-size: 0.8rem;
+}
+
+.dlActionBtn:hover:not(:disabled) {
+  background: #f1f5f9;
+}
+
+.dlDangerBtn {
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
+.dlDangerBtn:hover:not(:disabled) {
+  background: #fef2f2;
+}
+
+.dlCancelledNote {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #92400e;
+}
+
+.dlError {
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
 @media (max-width: 640px) {
   .detailGrid {
     grid-template-columns: 1fr;

@@ -12,6 +12,7 @@ import {
   getOrderStatusMeta,
   ORDER_STATUS_META,
 } from '@/lib/orderDisplay';
+import DelhiveryShipping from './DelhiveryShipping';
 import productStyles from '../products/products.module.css';
 import styles from './orders.module.css';
 
@@ -115,6 +116,13 @@ export default function AdminOrdersPage() {
     load();
   }, [load]);
 
+  const handleShipmentChange = useCallback((orderId, shipment) => {
+    setOrders((prev) =>
+      prev.map((o) => (o.order_id === orderId ? { ...o, shipment } : o))
+    );
+    setSelected((prev) => (prev?.order_id === orderId ? { ...prev, shipment } : prev));
+  }, []);
+
   const handleStatusChange = async (orderId, nextStatus) => {
     try {
       setUpdating(true);
@@ -188,6 +196,7 @@ export default function AdminOrdersPage() {
                   <th className={productStyles.th}>Total</th>
                   <th className={productStyles.th}>Payment</th>
                   <th className={productStyles.th}>Status</th>
+                  <th className={productStyles.th}>Shipping</th>
                   <th className={productStyles.th}>Date</th>
                 </tr>
               </thead>
@@ -212,6 +221,13 @@ export default function AdminOrdersPage() {
                     </td>
                     <td className={productStyles.td}>
                       <StatusBadge status={order.order_status} />
+                    </td>
+                    <td className={productStyles.td}>
+                      <DelhiveryShipping
+                        order={order}
+                        onShipmentChange={handleShipmentChange}
+                        compact
+                      />
                     </td>
                     <td className={productStyles.td}>{formatDate(order.created_at)}</td>
                   </tr>
@@ -283,6 +299,11 @@ export default function AdminOrdersPage() {
                   </div>
                 </div>
               </div>
+
+              <h4 className={styles.detailLabel} style={{ marginTop: 20 }}>
+                Shipping · Delhivery One
+              </h4>
+              <DelhiveryShipping order={selected} onShipmentChange={handleShipmentChange} />
 
               <h4 className={styles.detailLabel} style={{ marginTop: 20 }}>
                 Items
