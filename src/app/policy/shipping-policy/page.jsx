@@ -71,10 +71,12 @@ export default function ShippingPolicyPage() {
             We strive to keep shipping as affordable as possible:
           </p>
           <ul className={styles.list}>
-            <li><strong>Free shipping</strong> on all prepaid orders above ₹999</li>
-            <li><strong>₹79 flat rate</strong> for prepaid orders below ₹999</li>
-            <li><strong>₹79 shipping + ₹49 COD handling fee</strong> for Cash on Delivery orders</li>
+            <li><strong>Free shipping</strong> on all prepaid orders (UPI, cards, net banking), with no minimum order value</li>
+            <li><strong>₹99 Cash on Delivery charge</strong> for COD orders</li>
           </ul>
+          <p className={styles.paragraph}>
+            The applicable charge is always shown at checkout before you place your order.
+          </p>
           <p className={styles.paragraph}>
             Promotional free shipping offers may be available from time to time and will be communicated on our website and social media channels.
           </p>

@@ -29,7 +29,7 @@ export default function RefundPolicyPage() {
             We want you to be completely satisfied with your purchase. If you are not happy with your order, you may request a return within <strong>7 days</strong> of the delivery date, provided the following conditions are met:
           </p>
           <ul className={styles.list}>
-            <li>The product is unused, unworn, and unwashed</li>
+            <li>The product is unused and free of marks, scratches, stains or odours</li>
             <li>All original tags, labels, and packaging are intact</li>
             <li>The product is in its original condition without any alterations or damage</li>
             <li>Proof of purchase (order confirmation email or invoice) is available</li>
@@ -40,8 +40,7 @@ export default function RefundPolicyPage() {
             The following categories are not eligible for returns or exchanges:
           </p>
           <ul className={styles.list}>
-            <li>Innerwear, undergarments, and socks</li>
-            <li>Customised or personalised products</li>
+            <li>Customised or personalised products (e.g. engraved or monogrammed items)</li>
             <li>Products purchased during clearance or final sale</li>
             <li>Gift cards and vouchers</li>
             <li>Products with removed or damaged tags</li>
@@ -88,7 +87,7 @@ export default function RefundPolicyPage() {
 
           <h2 className={styles.sectionHeading}>5. Exchanges</h2>
           <p className={styles.paragraph}>
-            We offer exchanges for size or colour variants of the same product, subject to stock availability. To request an exchange, contact our support team within the 7-day return window. If the desired variant is unavailable, we will process a refund instead.
+            We offer exchanges for a different colour of the same product, or a different size for belts, subject to stock availability. To request an exchange, contact our support team within the 7-day return window. If the desired variant is unavailable, we will process a refund instead.
           </p>
 
           <h2 className={styles.sectionHeading}>6. Damaged or Incorrect Products</h2>

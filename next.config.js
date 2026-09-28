@@ -20,6 +20,12 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.lansdowneleather.com' }],
+        destination: 'https://lansdowneleather.com/:path*',
+        permanent: true,
+      },
       { source: '/home', destination: '/', permanent: true },
       { source: '/products', destination: '/shop', permanent: true },
       { source: '/contact', destination: '/contact-us', permanent: true },

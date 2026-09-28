@@ -5,6 +5,7 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://lansdownel
   ''
 );
 export const BRAND = 'Lansdowne Leather';
+export const SOCIAL_LINKS = ['https://www.instagram.com/leather_by_jbs/'];
 export const HOME_TITLE = 'Genuine Leather Wallets, Bags & Belts for Men & Women | Lansdowne';
 export const HOME_DESCRIPTION =
   'Shop 100% genuine leather wallets, handbags, sling bags, laptop bags and belts for men and women. Secure checkout and cash on delivery across India.';
@@ -104,7 +105,7 @@ const TYPE_WORD_RE =
 
 export function detectProductType(product) {
   const metaType = product?.metafields?.product_type;
-  const sources = [metaType, product?.name, product?.category];
+  const sources = [product?.name, metaType, product?.category];
   for (const source of sources) {
     if (!source) continue;
     const found = PRODUCT_TYPES.find((t) => t.re.test(String(source)));
@@ -381,6 +382,16 @@ export function buildOrganizationJsonLd() {
     url: SITE_URL,
     logo: absoluteUrl('/icon.png'),
     image: ASSETS.ogImage,
+    sameAs: SOCIAL_LINKS,
+    email: 'lansdowneleather1@gmail.com',
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer service',
+      telephone: '+91-89795-43500',
+      email: 'lansdowneleather1@gmail.com',
+      areaServed: 'IN',
+      availableLanguage: ['en', 'hi'],
+    },
   };
 }
 

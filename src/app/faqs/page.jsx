@@ -21,7 +21,7 @@ const faqGroups = [
       },
       {
         q: 'How long does delivery take?',
-        a: 'Standard delivery to metro cities takes 3–5 business days. For tier-2 and tier-3 cities, delivery typically takes 5–7 business days. Orders are dispatched within 24–48 hours of confirmation.',
+        a: 'Orders are dispatched within 24–48 business hours of confirmation (Monday to Saturday). After dispatch, delivery takes 3–5 business days to metro cities, 4–6 business days to tier-2 cities, 5–8 business days to tier-3 cities and rural areas, and 7–10 business days to North-East India and remote locations.',
       },
       {
         q: 'Do you deliver across India?',
@@ -29,7 +29,7 @@ const faqGroups = [
       },
       {
         q: 'Is there a shipping charge?',
-        a: 'We offer free standard shipping on all prepaid orders above ₹999. For orders below ₹999 or Cash on Delivery orders, a nominal shipping fee of ₹79 applies.',
+        a: 'Shipping is free on all prepaid orders, with no minimum order value. Cash on Delivery orders carry a ₹99 COD charge, shown at checkout.',
       },
     ],
   },
@@ -42,7 +42,7 @@ const faqGroups = [
       },
       {
         q: 'Is Cash on Delivery (COD) available?',
-        a: 'Yes, COD is available on eligible orders across most pin codes in India. A small COD handling fee of ₹49 may apply. COD availability is displayed at checkout.',
+        a: 'Yes, COD is available on eligible orders across most pin codes in India. A ₹99 COD charge applies to Cash on Delivery orders. COD availability is displayed at checkout.',
       },
       {
         q: 'Are my payment details secure?',
@@ -55,7 +55,7 @@ const faqGroups = [
     items: [
       {
         q: 'What is your return policy?',
-        a: 'We offer a 7-day return window from the date of delivery for eligible products. Items must be unused, unworn, and in their original packaging with all tags intact. Certain categories like innerwear, custom items, and sale products may not be eligible for return.',
+        a: 'You can request a return within 7 days of delivery. The wallet, bag or belt must be unused, free of marks, scratches or stains, and returned in its original packaging with all tags intact. Personalised items and products bought in a clearance or final sale cannot be returned. Received a damaged or wrong item? Contact us within 48 hours of delivery for a free replacement or full refund.',
       },
       {
         q: 'How do I initiate a return?',
@@ -67,7 +67,7 @@ const faqGroups = [
       },
       {
         q: 'Can I exchange a product instead of returning it?',
-        a: 'Yes, exchanges are available for size or colour variants of the same product, subject to stock availability. Contact our support team to initiate an exchange.',
+        a: 'Yes. Within the 7-day return window you can exchange for a different colour of the same product, or a different size for belts, subject to stock availability. Contact our support team to start an exchange. If the variant you want is unavailable, we will refund you instead.',
       },
     ],
   },

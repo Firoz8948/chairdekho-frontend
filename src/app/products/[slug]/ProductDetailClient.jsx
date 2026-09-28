@@ -54,7 +54,7 @@ const DEFAULT_FAQS = [
   },
   {
     q: 'How long does delivery take?',
-    a: 'Orders are usually processed within 1–2 business days. Delivery across India typically takes 3–7 business days depending on your location.',
+    a: 'Orders are dispatched within 1–2 business days. Delivery across India then takes 3–8 business days depending on your location (up to 10 business days for North-East India and remote areas). Shipping is free on prepaid orders.',
   },
   {
     q: 'Can I return or exchange this?',
