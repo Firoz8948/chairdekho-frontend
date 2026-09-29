@@ -82,6 +82,20 @@ const buildInitialSelection = (productData, colorValue) => {
   return initial;
 };
 
+const refreshSelection = (prev, freshProduct) => {
+  const next = buildInitialSelection(freshProduct, null);
+  (freshProduct?.variants || []).forEach((variant) => {
+    const key = variant.id ?? variant.name;
+    const chosen = prev[key];
+    if (!chosen) return;
+    const match = (variant.options || []).find(
+      (o) => (chosen.id != null && o.id === chosen.id) || o.name === chosen.name
+    );
+    if (match) next[key] = match;
+  });
+  return next;
+};
+
 export default function ProductDetailClient({
   initialProduct = null,
   initialDefs = [],
@@ -150,6 +164,15 @@ function ProductDetailPageInner({ initialProduct, initialDefs, initialColor }) {
         let productData;
         if (seed) {
           productData = seed.product;
+          // Server HTML is cached; pull live stock/price without resetting the shopper's selection.
+          productService
+            .getProduct(slug)
+            .then((fresh) => {
+              if (!mounted || !fresh) return;
+              setProduct(fresh);
+              setSelectedOptions((prev) => refreshSelection(prev, fresh));
+            })
+            .catch(() => {});
         } else {
           setLoading(true);
           setError('');

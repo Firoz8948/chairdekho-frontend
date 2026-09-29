@@ -302,6 +302,30 @@ export function buildProductMetadata(product, defs = []) {
 
 const GENDER_SCHEMA = { men: 'male', women: 'female', unisex: 'unisex' };
 
+// Must stay in sync with /policy/shipping-policy and /policy/refund-policy.
+const OFFER_SHIPPING_DETAILS = {
+  '@type': 'OfferShippingDetails',
+  shippingRate: { '@type': 'MonetaryAmount', value: 0, currency: 'INR' },
+  shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'IN' },
+  deliveryTime: {
+    '@type': 'ShippingDeliveryTime',
+    handlingTime: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 2, unitCode: 'DAY' },
+    transitTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 10, unitCode: 'DAY' },
+  },
+};
+
+const MERCHANT_RETURN_POLICY = {
+  '@type': 'MerchantReturnPolicy',
+  applicableCountry: 'IN',
+  returnPolicyCountry: 'IN',
+  returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+  merchantReturnDays: 7,
+  returnMethod: 'https://schema.org/ReturnByMail',
+  returnFees: 'https://schema.org/FreeReturn',
+  refundType: 'https://schema.org/FullRefund',
+  merchantReturnLink: `${SITE_URL}/policy/refund-policy`,
+};
+
 export function buildProductJsonLd(product, defs = []) {
   const url = absoluteUrl(`/products/${product.slug}`);
   const { low, high } = getPriceRange(product);
@@ -322,6 +346,8 @@ export function buildProductJsonLd(product, defs = []) {
           offerCount: offerCount || 1,
           availability,
           url,
+          shippingDetails: OFFER_SHIPPING_DETAILS,
+          hasMerchantReturnPolicy: MERCHANT_RETURN_POLICY,
         }
       : low != null
         ? {
@@ -332,6 +358,8 @@ export function buildProductJsonLd(product, defs = []) {
             itemCondition: 'https://schema.org/NewCondition',
             url,
             seller: { '@type': 'Organization', name: BRAND },
+            shippingDetails: OFFER_SHIPPING_DETAILS,
+            hasMerchantReturnPolicy: MERCHANT_RETURN_POLICY,
           }
         : undefined;
 
