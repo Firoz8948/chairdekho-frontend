@@ -206,6 +206,44 @@
   box-shadow: inset 0 0 0 1px var(--primary);
 }
 
+.savedAddressBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.savedAddressBlock + .formGrid {
+  margin-top: 18px;
+}
+
+.newAddressBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px dashed var(--border);
+  background: transparent;
+  color: var(--text-main);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.newAddressBtn:hover {
+  border-color: var(--primary);
+  background: #ffffff;
+}
+
+.newAddressBtnActive {
+  border-style: solid;
+  border-color: var(--primary);
+  background: #ffffff;
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
 .summaryPanel {
   border: 1px solid #e2e8f0;
   background: #fafafa;

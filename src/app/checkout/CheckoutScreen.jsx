@@ -38,6 +38,28 @@ const emptyForm = {
   pincode: '',
 };
 
+const ADDRESS_KEYS = ['line1', 'line2', 'landmark', 'city', 'state', 'pincode'];
+
+const emptyAddress = Object.fromEntries(ADDRESS_KEYS.map((k) => [k, '']));
+
+const addressFromProfile = (profile) => {
+  if (!profile?.address_line1 || !profile?.address_pincode) return null;
+  return {
+    line1: profile.address_line1 || '',
+    line2: profile.address_line2 || '',
+    landmark: profile.address_landmark || '',
+    city: profile.address_city || '',
+    state: profile.address_state || '',
+    pincode: digitsOnly(profile.address_pincode).slice(0, 6),
+  };
+};
+
+const formatAddressLines = (addr) => [
+  [addr.line1, addr.line2].filter(Boolean).join(', '),
+  addr.landmark ? `Landmark: ${addr.landmark}` : '',
+  [addr.city, addr.state].filter(Boolean).join(', ') + (addr.pincode ? ` - ${addr.pincode}` : ''),
+].filter(Boolean);
+
 export default function CheckoutScreen() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -45,6 +67,8 @@ export default function CheckoutScreen() {
     useCart();
 
   const [form, setForm] = useState(emptyForm);
+  const [savedAddress, setSavedAddress] = useState(null);
+  const [useSavedAddress, setUseSavedAddress] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('prepaid');
   const [promoCode, setPromoCode] = useState('');
   const [showPromoField, setShowPromoField] = useState(false);
@@ -66,36 +90,28 @@ export default function CheckoutScreen() {
       return;
     }
 
-    const user = authService.getUser();
-    setForm((prev) => ({
-      ...prev,
-      name: user?.name || prev.name,
-      mobile: digitsOnly(user?.phone || '').slice(-10) || prev.mobile,
-      email: user?.email?.includes('@mobile.') ? '' : user?.email || prev.email,
-      line1: user?.address_line1 || prev.line1,
-      line2: user?.address_line2 || prev.line2,
-      landmark: user?.address_landmark || prev.landmark,
-      city: user?.address_city || prev.city,
-      state: user?.address_state || prev.state,
-      pincode: user?.address_pincode || prev.pincode,
-    }));
+    const applyProfile = (profile, keepEmail) => {
+      const saved = addressFromProfile(profile);
+      setSavedAddress(saved);
+      setUseSavedAddress(Boolean(saved));
+      setForm((prev) => ({
+        ...prev,
+        name: profile?.name || prev.name,
+        mobile: digitsOnly(profile?.phone || '').slice(-10) || prev.mobile,
+        email: profile?.email?.includes('@mobile.')
+          ? keepEmail
+            ? prev.email
+            : ''
+          : profile?.email || prev.email,
+        ...(saved || {}),
+      }));
+    };
+
+    applyProfile(authService.getUser(), false);
 
     apiClient
       .get('/auth/me')
-      .then((me) => {
-        setForm((prev) => ({
-          ...prev,
-          name: me?.name || prev.name,
-          mobile: digitsOnly(me?.phone || '').slice(-10) || prev.mobile,
-          email: me?.email?.includes('@mobile.') ? prev.email : me?.email || prev.email,
-          line1: me?.address_line1 || prev.line1,
-          line2: me?.address_line2 || prev.line2,
-          landmark: me?.address_landmark || prev.landmark,
-          city: me?.address_city || prev.city,
-          state: me?.address_state || prev.state,
-          pincode: me?.address_pincode || prev.pincode,
-        }));
-      })
+      .then((me) => applyProfile(me, true))
       .catch(() => {})
       .finally(() => setAuthChecked(true));
 
@@ -117,6 +133,17 @@ export default function CheckoutScreen() {
 
   const updateField = (key, value) => {
     setForm((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const selectSavedAddress = () => {
+    if (!savedAddress) return;
+    setUseSavedAddress(true);
+    setForm((prev) => ({ ...prev, ...savedAddress }));
+  };
+
+  const startNewAddress = () => {
+    setUseSavedAddress(false);
+    setForm((prev) => ({ ...prev, ...emptyAddress }));
   };
 
   const fetchShipping = useCallback(async () => {
@@ -242,7 +269,7 @@ export default function CheckoutScreen() {
 
   useEffect(() => {
     const pin = digitsOnly(form.pincode);
-    if (pin.length !== 6) return undefined;
+    if (pin.length !== 6 || useSavedAddress) return undefined;
 
     let cancelled = false;
     shippingService
@@ -264,7 +291,7 @@ export default function CheckoutScreen() {
     return () => {
       cancelled = true;
     };
-  }, [form.pincode]);
+  }, [form.pincode, useSavedAddress]);
 
   const payableTotal = useMemo(() => {
     const ship = shippingCharge == null ? 0 : shippingCharge;
@@ -499,6 +526,40 @@ export default function CheckoutScreen() {
 
               <section className={styles.card}>
                 <h2 className={styles.cardTitle}>Shipping address</h2>
+                {savedAddress && (
+                  <div className={styles.savedAddressBlock}>
+                    <label
+                      className={`${styles.payOption} ${
+                        useSavedAddress ? styles.payOptionActive : ''
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="addressChoice"
+                        checked={useSavedAddress}
+                        onChange={selectSavedAddress}
+                      />
+                      <span>
+                        <strong>Saved address</strong>
+                        {formatAddressLines(savedAddress).map((line) => (
+                          <small key={line}>{line}</small>
+                        ))}
+                      </span>
+                    </label>
+                    <button
+                      type="button"
+                      className={`${styles.newAddressBtn} ${
+                        !useSavedAddress ? styles.newAddressBtnActive : ''
+                      }`}
+                      onClick={startNewAddress}
+                      aria-pressed={!useSavedAddress}
+                    >
+                      <Plus size={16} />
+                      Or enter a new address
+                    </button>
+                  </div>
+                )}
+                {(!savedAddress || !useSavedAddress) && (
                 <div className={styles.formGrid}>
                   <div className={`${styles.field} ${styles.fullWidth}`}>
                     <label className={styles.label} htmlFor="co-line1">
@@ -583,6 +644,7 @@ export default function CheckoutScreen() {
                     </select>
                   </div>
                 </div>
+                )}
               </section>
 
               <section className={styles.card}>
