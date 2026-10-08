@@ -4,8 +4,12 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import styles from './admin.module.css';
+import apiClient from '@/lib/api';
 import authService from '@/lib/services/auth';
 import { FEATURES } from '@/lib/features';
+
+const SWITCH_TARGET_LABEL = 'ChaklaDekho';
+const BARE_PAGES = ['/admin/login', '/admin/switch'];
 
 /* ── SVG Icon Components (Lucide-style, 20x20) ── */
 
@@ -122,6 +126,15 @@ const IconLogout = (p) => (
   </Icon>
 );
 
+const IconSwitch = (p) => (
+  <Icon size={18} {...p}>
+    <path d="M8 3 4 7l4 4" />
+    <path d="M4 7h16" />
+    <path d="m16 21 4-4-4-4" />
+    <path d="M20 17H4" />
+  </Icon>
+);
+
 const IconChevronLeft = (p) => (
   <Icon size={18} {...p}>
     <polyline points="15 18 9 12 15 6" />
@@ -201,6 +214,7 @@ export default function AdminShell({ children }) {
   const router = useRouter();
   const [collapsed, setCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [switching, setSwitching] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 860px)');
@@ -216,7 +230,7 @@ export default function AdminShell({ children }) {
   }, []);
 
   useEffect(() => {
-    if (pathname !== '/admin/login') {
+    if (!BARE_PAGES.includes(pathname)) {
       const token = authService.getAdminToken();
       if (!token) {
         router.push('/admin/login');
@@ -229,8 +243,8 @@ export default function AdminShell({ children }) {
     if (isMobile) setCollapsed(true);
   }, [pathname, isMobile]);
 
-  // If on login page, render full-screen without sidebar/header shell
-  if (pathname === '/admin/login') {
+  // Login and switch pages render full-screen without sidebar/header shell
+  if (BARE_PAGES.includes(pathname)) {
     return <>{children}</>;
   }
 
@@ -238,6 +252,20 @@ export default function AdminShell({ children }) {
     authService.logoutAdmin();
     router.push('/admin/login');
   };
+
+  const handleSwitch = async () => {
+    if (switching) return;
+    setSwitching(true);
+    try {
+      const data = await apiClient.post('/admin/switch/ticket');
+      window.location.assign(data.redirect_url);
+    } catch (err) {
+      setSwitching(false);
+      window.alert(err.message || `Could not switch to ${SWITCH_TARGET_LABEL}`);
+    }
+  };
+
+  const sidebarCompact = collapsed && !isMobile;
 
   const isActive = (href) => pathname === href || pathname.startsWith(href + '/');
 
@@ -259,6 +287,21 @@ export default function AdminShell({ children }) {
               {collapsed && !isMobile ? <IconChevronRight /> : <IconChevronLeft />}
             </button>
           </div>
+
+          <button
+            type="button"
+            className={styles.switchBtn}
+            onClick={handleSwitch}
+            disabled={switching}
+            title={`Switch to ${SWITCH_TARGET_LABEL} admin`}
+          >
+            <IconSwitch />
+            {!sidebarCompact && (
+              <span className={styles.navLabel}>
+                {switching ? 'Switching…' : `Switch to ${SWITCH_TARGET_LABEL}`}
+              </span>
+            )}
+          </button>
 
           <nav className={styles.nav}>
             {navSections.map((section, si) => (
