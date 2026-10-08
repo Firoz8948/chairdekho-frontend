@@ -4,7 +4,7 @@
   --size: 170px;
   --size-active: 250px;
   --gap: 40px;
-  --name-space: 44px;
+  --name-space: 80px;
 
   width: 100%;
   background: var(--marquee-bg);
@@ -69,20 +69,42 @@
   transition: color 0.35s ease, filter 0.35s ease;
 }
 
-.name {
+.caption {
   position: absolute;
   left: 50%;
   bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
   transform: translate(-50%, 6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.name {
   white-space: nowrap;
   font-size: var(--text-body);
   font-weight: 600;
   letter-spacing: 0.04em;
   color: #ffffff;
   text-shadow: 0 0 10px var(--neon);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.shop {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 18px;
+  font-size: var(--text-micro);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #2b2b2b;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  transition: background-color 0.2s ease;
 }
 
 /* Active state: hover on desktop, centred item on mobile (class set from JS) */
@@ -101,9 +123,10 @@
   filter: drop-shadow(0 0 2px var(--neon)) drop-shadow(0 0 8px var(--neon));
 }
 
-.itemActive .name {
+.itemActive .caption {
   opacity: 1;
   transform: translate(-50%, 0);
+  pointer-events: auto;
 }
 
 @media (hover: hover) and (min-width: 769px) {
@@ -122,9 +145,14 @@
     filter: drop-shadow(0 0 2px var(--neon)) drop-shadow(0 0 8px var(--neon));
   }
 
-  .item:hover .name {
+  .item:hover .caption {
     opacity: 1;
     transform: translate(-50%, 0);
+    pointer-events: auto;
+  }
+
+  .item:hover .shop {
+    background: #ffffff;
   }
 }
 
@@ -133,12 +161,21 @@
     --size: 92px;
     --size-active: 150px;
     --gap: 18px;
-    --name-space: 36px;
+    --name-space: 62px;
+  }
+
+  .caption {
+    bottom: 6px;
+    gap: 6px;
   }
 
   .name {
     font-size: var(--text-micro);
-    bottom: 6px;
+  }
+
+  .shop {
+    padding: 4px 14px;
+    font-size: 10px;
   }
 }
 

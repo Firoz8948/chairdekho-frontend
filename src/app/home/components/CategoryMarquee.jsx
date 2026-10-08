@@ -190,7 +190,10 @@ export default function CategoryMarquee() {
                       <Armchair className={styles.fallback} strokeWidth={1.25} aria-hidden="true" />
                     )}
                   </span>
-                  <span className={styles.name}>{cat.name}</span>
+                  <span className={styles.caption}>
+                    <span className={styles.name}>{cat.name}</span>
+                    <span className={styles.shop} aria-hidden="true">Shop</span>
+                  </span>
                 </Link>
               </li>
             );
