@@ -25,7 +25,7 @@ jobs:
           script_stop: true
           script: |
             set -euo pipefail
-            cd /opt/chairdekho/frontend
+            cd /opt/frontend
             git fetch origin main
             git reset --hard origin/main
             # --env-file feeds NEXT_PUBLIC_* into the build args (they are baked in at build time)
