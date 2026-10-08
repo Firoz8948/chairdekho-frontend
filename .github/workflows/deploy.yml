@@ -31,5 +31,5 @@ jobs:
             # --env-file feeds NEXT_PUBLIC_* into the build args (they are baked in at build time)
             docker compose --env-file .env.production up -d --build
             docker compose --env-file .env.production ps
-            curl -fsS -o /dev/null --retry 15 --retry-delay 4 --retry-connrefused http://127.0.0.1:3000/
+            curl -fsS -o /dev/null --retry 15 --retry-delay 4 --retry-all-errors http://127.0.0.1:3000/
             docker image prune -f
