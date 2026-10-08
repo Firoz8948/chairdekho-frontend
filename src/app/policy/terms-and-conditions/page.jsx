@@ -26,7 +26,7 @@ export default function TermsAndConditionsPage() {
         <div className={styles.content}>
           <h2 className={styles.sectionHeading}>1. Acceptance of Terms</h2>
           <p className={styles.paragraph}>
-            By accessing, browsing, or purchasing from the ChairDekho website (chairdekho.com), you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions. If you do not agree to these terms, please refrain from using our website or services.
+            By accessing, browsing, or purchasing from the ChairDekho website (chairdekho.in), you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions. If you do not agree to these terms, please refrain from using our website or services.
           </p>
 
           <h2 className={styles.sectionHeading}>2. Eligibility</h2>

@@ -10,9 +10,9 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-ARG NEXT_PUBLIC_API_URL=https://api.chairdekho.com
-ARG NEXT_PUBLIC_API_BASE=https://api.chairdekho.com/api/v1
-ARG NEXT_PUBLIC_SITE_URL=https://chairdekho.com
+ARG NEXT_PUBLIC_API_URL=https://api.chairdekho.in
+ARG NEXT_PUBLIC_API_BASE=https://api.chairdekho.in/api/v1
+ARG NEXT_PUBLIC_SITE_URL=https://chairdekho.in
 ARG NEXT_PUBLIC_SITE_NAME=ChairDekho
 
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL \

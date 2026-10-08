@@ -1,6 +1,6 @@
 import { ASSETS } from '@/lib/assets';
 
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://chairdekho.com').replace(
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://chairdekho.in').replace(
   /\/+$/,
   ''
 );
