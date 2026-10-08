@@ -31,7 +31,7 @@
 }
 
 .backLink:hover {
-  color: #0f172a;
+  color: #000000;
 }
 
 .loadingState,
@@ -100,7 +100,7 @@
   position: absolute;
   top: 14px;
   left: 14px;
-  background: #0f172a;
+  background: #000000;
   color: #fff;
   font-size: 0.68rem;
   font-weight: 700;
@@ -137,8 +137,8 @@
 }
 
 .thumbActive {
-  border-color: #0f172a;
-  box-shadow: 0 0 0 1px #0f172a;
+  border-color: #000000;
+  box-shadow: 0 0 0 1px #000000;
 }
 
 .info {
@@ -171,9 +171,11 @@
 
 .priceRow {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 420px;
+  gap: 12px;
 }
 
 .priceGroup {
@@ -188,6 +190,13 @@
   color: #1c1917;
 }
 
+.priceUnit {
+  margin-left: -8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
 .mrp {
   font-size: 1rem;
   color: #a8a29e;
@@ -196,6 +205,8 @@
 
 .stock {
   margin: 0;
+  flex-shrink: 0;
+  text-align: right;
   font-size: 0.875rem;
   font-weight: 600;
 }
@@ -241,13 +252,13 @@
 }
 
 .optionChip:hover {
-  border-color: #0f172a;
-  color: #0f172a;
+  border-color: #000000;
+  color: #000000;
 }
 
 .optionChipActive {
-  background: #0f172a;
-  border-color: #0f172a;
+  background: #000000;
+  border-color: #000000;
   color: #fff;
 }
 
@@ -257,8 +268,8 @@
   min-width: 28px;
   min-height: 28px;
   aspect-ratio: 1 / 1;
-  border-radius: 9999px !important;
-  border: 1.5px solid rgba(15, 23, 42, 0.22);
+  border-radius: 0 !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.22);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
   padding: 0;
   margin: 0;
@@ -280,7 +291,7 @@
 .colorSwatchActive {
   box-shadow:
     0 0 0 2px #ffffff,
-    0 0 0 3.5px #0f172a;
+    0 0 0 3.5px #000000;
 }
 
 .qtyRow {
@@ -338,7 +349,7 @@
   max-width: 420px;
   min-height: 52px;
   border: none;
-  background: #0f172a;
+  background: #000000;
   color: #ffffff;
   font-size: 0.88rem;
   font-weight: 700;
@@ -349,7 +360,7 @@
 }
 
 .addToBagBtn:hover:not(:disabled) {
-  background: #1e293b;
+  background: #222222;
 }
 
 .addToBagBtn:disabled {
@@ -375,10 +386,11 @@
 }
 
 .trustIconImg {
-  width: clamp(52px, 6vw, 68px);
-  height: clamp(52px, 6vw, 68px);
+  width: clamp(60px, 6.5vw, 80px);
+  height: clamp(60px, 6.5vw, 80px);
   object-fit: contain;
   display: block;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
 }
 
 .trustIconLabel {
@@ -388,14 +400,6 @@
   text-transform: uppercase;
   color: #57534e;
   line-height: 1.3;
-}
-
-.trustLabelBreak {
-  display: none;
-}
-
-.trustLabelDesktopJoin {
-  display: inline;
 }
 
 .descriptionBlock {
@@ -414,6 +418,8 @@
 }
 
 .sectionHeader {
+  align-items: center;
+  text-align: center;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -430,7 +436,7 @@
 }
 
 .sectionSubtitle {
-  font-size: clamp(0.85rem, 1vw, 0.95rem);
+  font-size: var(--text-subtitle);
   color: var(--text-muted);
   line-height: 1.3;
   margin: 0;
@@ -513,7 +519,7 @@
 }
 
 .metafieldBody {
-  color: #0f172a;
+  color: #000000;
   font-size: 14px;
   line-height: 1.55;
 }
@@ -633,16 +639,7 @@
   }
 
   .priceRow {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    gap: 12px;
-  }
-
-  .stock {
-    flex-shrink: 0;
-    text-align: right;
+    max-width: none;
   }
 
   .contentSection {
@@ -763,24 +760,24 @@
   }
 
   .trustIconLabel {
-    font-size: 0.58rem;
+    font-size: var(--text-micro);
   }
 
   .trustIconImg {
-    width: clamp(40px, 12vw, 52px);
-    height: clamp(40px, 12vw, 52px);
-  }
-
-  .trustLabelBreak {
-    display: block;
-  }
-
-  .trustLabelDesktopJoin {
-    display: none;
+    width: clamp(48px, 14vw, 60px);
+    height: clamp(48px, 14vw, 60px);
   }
 }
 
 @media (max-width: 640px) {
+  .title {
+    font-size: var(--text-h1);
+  }
+
+  .descriptionTitle {
+    font-size: var(--text-micro);
+  }
+
   .inner {
     padding-top: 0;
     padding-left: 0;

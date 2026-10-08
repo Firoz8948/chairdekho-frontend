@@ -179,6 +179,32 @@ export const adminService = {
     });
   },
 
+  // Home banners
+  async getBanners(device) {
+    return apiClient.get('/banners/admin/all', { params: device ? { device } : {} });
+  },
+
+  async createBanner(data) {
+    return apiClient.post('/banners/', data);
+  },
+
+  async updateBanner(id, data) {
+    return apiClient.put(`/banners/${id}`, data);
+  },
+
+  async deleteBanner(id) {
+    return apiClient.delete(`/banners/${id}`);
+  },
+
+  async uploadBannerImage(id, file) {
+    const formData = new FormData();
+    formData.append('file', file);
+    return apiClient.post(`/banners/${id}/image`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+      timeout: 60000,
+    });
+  },
+
   // Promo codes
   async getPromoCodes() {
     return apiClient.get('/promocodes/admin/all');

@@ -362,7 +362,7 @@ export default function CheckoutScreen() {
         key: data.key_id,
         amount: Math.round(Number(data.amount) * 100),
         currency: data.currency || 'INR',
-        name: 'Lansdowne',
+        name: 'ChairDekho',
         description: 'Order payment',
         order_id: data.razorpay_order_id,
         prefill: {
@@ -447,7 +447,7 @@ export default function CheckoutScreen() {
           <div className={styles.inner}>
             <div className={styles.sectionHeader}>
               <h1 className={styles.sectionTitle}>CHECKOUT</h1>
-              <p className={styles.sectionSubtitle}>Your bag is empty</p>
+              <p className={styles.sectionSubtitle}>Your cart is empty</p>
             </div>
             <div className={styles.emptyState}>
               <h2 className={styles.emptyTitle}>Nothing to checkout</h2>

@@ -1,7 +1,7 @@
 .footer {
   border-top: 1px solid var(--border);
   background-color: var(--surface-subtle);
-  padding: clamp(48px, 6vw, 70px) var(--gutter-inline) 32px;
+  padding: clamp(var(--section-space-mobile), 6vw, 70px) var(--gutter-inline) 32px;
   margin-top: auto;
   width: 100%;
 }
@@ -34,7 +34,7 @@
 
   .bottomBar {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 }
 
@@ -51,12 +51,6 @@
   text-decoration: none;
 }
 
-.brandLogo {
-  width: auto;
-  height: clamp(28px, 3.2vw, 36px);
-  object-fit: contain;
-}
-
 .brandDesc {
   color: var(--text-muted);
   font-size: var(--text-body);
@@ -65,50 +59,7 @@
 }
 
 .socialRow {
-  display: flex;
-  align-items: center;
-  gap: 12px;
   margin-top: 4px;
-}
-
-.socialBtn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.socialBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
-}
-
-.socialBtn:focus-visible {
-  outline: 2px solid var(--text-main);
-  outline-offset: 3px;
-}
-
-.socialInstagram {
-  background: radial-gradient(
-    circle at 30% 107%,
-    #fdf497 0%,
-    #fdf497 5%,
-    #fd5949 45%,
-    #d6249f 60%,
-    #285aeb 90%
-  );
-}
-
-.socialWhatsapp {
-  background: #25d366;
-}
-
-.socialEmail {
-  background: #ea4335;
 }
 
 .colTitle {
@@ -141,10 +92,168 @@
   padding-top: 28px;
   border-top: 1px solid var(--border);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  text-align: center;
   color: var(--text-muted);
   font-size: var(--text-body);
   flex-wrap: wrap;
   gap: 12px;
+}
+
+.brandCopyright {
+  display: none;
+  margin: 6px 0 0;
+  color: var(--text-muted);
+  font-size: var(--text-body);
+}
+
+.brandCopyright p {
+  margin: 0;
+}
+
+.copyrightGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.brandOf {
+  margin-top: 4px;
+  font-size: var(--text-micro);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.gstin {
+  font-size: var(--text-micro);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+/* ================= DEVELOPER CREDIT STRIP ================= */
+.credit {
+  width: 100%;
+  background: #000000;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: var(--text-micro);
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px var(--gutter-inline);
+  text-align: center;
+}
+
+@media (max-width: 374px) {
+  .credit {
+    flex-wrap: nowrap;
+    gap: 8px;
+    font-size: clamp(9px, 2.9vw, 11px);
+    letter-spacing: 0;
+  }
+
+  .credit > span {
+    white-space: nowrap;
+  }
+
+  .creditBtn {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.creditLink {
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.35);
+  text-underline-offset: 3px;
+  transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
+}
+
+.creditLink:hover {
+  color: #c4a484;
+  text-decoration-color: #c4a484;
+}
+
+.creditLink:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.creditBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #000000;
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.creditBtn:hover {
+  transform: translate(2px, -2px);
+  background: #c4a484;
+}
+
+.creditBtn:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+/* Desktop: Quick Links | brand (centred) | Policies; copyright moves under the socials */
+@media (min-width: 769px) {
+  .footer {
+    padding-bottom: clamp(40px, 5vw, 64px);
+  }
+
+  .inner {
+    grid-template-columns: 1fr minmax(0, 1.5fr) 1fr;
+    align-items: start;
+    margin-bottom: 0;
+  }
+
+  .quickCol {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .brandCol {
+    grid-column: 2;
+    grid-row: 1;
+    align-items: center;
+    text-align: center;
+  }
+
+  .policyCol {
+    grid-column: 3;
+    grid-row: 1;
+    text-align: right;
+  }
+
+  .brandDesc {
+    max-width: 440px;
+  }
+
+  .socialRow {
+    justify-content: center;
+  }
+
+  .brandCopyright {
+    display: block;
+  }
+
+  .bottomBar {
+    display: none;
+  }
 }

@@ -29,8 +29,12 @@ function resolveAuthToken(url = '', method = 'get') {
     !path.includes('/shipping-zones/pincode') &&
     (path.includes('/admin') || ['post', 'put', 'patch', 'delete'].includes(verb));
 
+  const isBannerAdminMutation =
+    path.includes('/banners') && ['post', 'put', 'patch', 'delete'].includes(verb);
+
   const needsAdmin =
     path.includes('/admin') ||
+    isBannerAdminMutation ||
     path.includes('/metafields') ||
     isPromoAdminMutation ||
     isShippingZoneAdmin ||

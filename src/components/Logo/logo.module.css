@@ -1,0 +1,41 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  line-height: 0;
+  text-decoration: none;
+  transition: opacity var(--transition-fast, 0.2s ease);
+}
+
+.logo:hover {
+  opacity: 0.88;
+}
+
+.image {
+  display: block;
+  height: var(--logo-h);
+  width: auto;
+  aspect-ratio: 1355 / 842;
+}
+
+.sm {
+  --logo-h: 40px;
+}
+
+.md {
+  --logo-h: clamp(44px, 3.4vw, 52px);
+}
+
+.lg {
+  --logo-h: clamp(64px, 5vw, 80px);
+}
+
+@media (max-width: 768px) {
+  .md {
+    --logo-h: 40px;
+  }
+
+  .lg {
+    --logo-h: 60px;
+  }
+}

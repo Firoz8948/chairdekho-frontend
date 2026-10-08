@@ -15,7 +15,7 @@
 .title {
   font-size: 1.6rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #000000;
   letter-spacing: -0.02em;
   margin-bottom: 4px;
 }
@@ -29,7 +29,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #0f172a;
+  background: #000000;
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -43,7 +43,7 @@
 }
 
 .addBtn:hover {
-  background: #1e293b;
+  background: #222222;
   transform: translateY(-1px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
 }
@@ -85,7 +85,7 @@
   background: transparent;
   outline: none;
   font-size: 0.875rem;
-  color: #1e293b;
+  color: #222222;
   width: 100%;
 }
 
@@ -184,7 +184,7 @@
 
 .productName {
   font-weight: 600;
-  color: #0f172a;
+  color: #000000;
   margin-bottom: 2px;
 }
 
@@ -195,7 +195,7 @@
 
 .priceCell {
   font-weight: 600;
-  color: #0f172a;
+  color: #000000;
   white-space: nowrap;
 }
 
@@ -259,7 +259,7 @@
 
 .actionBtn:hover {
   background: #f1f5f9;
-  color: #0f172a;
+  color: #000000;
   border-color: #cbd5e1;
 }
 
@@ -290,7 +290,7 @@
 .emptyTitle {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #1e293b;
+  color: #222222;
   margin-bottom: 6px;
 }
 
@@ -312,7 +312,7 @@
 .modalOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(4px);
   z-index: 1000;
   display: flex;
@@ -340,7 +340,7 @@
 .modalTitle {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #000000;
 }
 
 .modalCloseBtn {
@@ -357,7 +357,7 @@
 
 .modalCloseBtn:hover {
   background: #f1f5f9;
-  color: #0f172a;
+  color: #000000;
 }
 
 .modalBody {
@@ -428,7 +428,7 @@
 }
 
 .backLink:hover {
-  color: #0f172a;
+  color: #000000;
 }
 
 .formPageHeader {
@@ -438,7 +438,7 @@
 .formPageTitle {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #000000;
   letter-spacing: -0.02em;
   margin-bottom: 4px;
 }
@@ -483,7 +483,7 @@
 .sectionTitle {
   font-size: 1rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #000000;
   margin-bottom: 4px;
 }
 
@@ -528,7 +528,7 @@
   border-radius: 8px;
   padding: 10px 14px;
   font-size: 0.875rem;
-  color: #0f172a;
+  color: #000000;
   outline: none;
   transition: border-color 0.15s, box-shadow 0.15s;
   width: 100%;
@@ -539,8 +539,8 @@
 .formInput:focus,
 .formTextarea:focus,
 .formSelect:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  border-color: #000000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
 }
 
 .formTextarea {
@@ -601,7 +601,7 @@
   align-items: center;
   gap: 10px;
   font-size: 0.875rem;
-  color: #0f172a;
+  color: #000000;
   cursor: pointer;
   user-select: none;
 }
@@ -765,7 +765,7 @@
   height: 18px;
   border: none;
   border-radius: 4px;
-  background: rgba(15, 23, 42, 0.75);
+  background: rgba(0, 0, 0, 0.75);
   color: #fff;
   display: flex;
   align-items: center;
@@ -788,7 +788,7 @@
 
 .optionImagesAssignBtn:hover {
   border-color: #64748b;
-  color: #0f172a;
+  color: #000000;
 }
 
 .formTextareaTall {
@@ -818,8 +818,8 @@
 }
 
 .priceInputWrap:focus-within {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  border-color: #000000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
 }
 
 .pricePrefix {
@@ -834,7 +834,7 @@
   outline: none;
   padding: 10px 14px 10px 8px;
   font-size: 0.875rem;
-  color: #0f172a;
+  color: #000000;
   width: 100%;
   background: transparent;
 }
@@ -863,8 +863,8 @@
 
 .imageDropzone:hover,
 .imageDropzoneActive {
-  border-color: #3b82f6;
-  background: #eff6ff;
+  border-color: #000000;
+  background: #f5f5f5;
 }
 
 .imageDropIcon {
@@ -915,7 +915,7 @@
   position: absolute;
   top: 6px;
   left: 6px;
-  background: #0f172a;
+  background: #000000;
   color: #fff;
   font-size: 0.65rem;
   font-weight: 600;
@@ -931,7 +931,7 @@
   height: 24px;
   border-radius: 50%;
   border: none;
-  background: rgba(15, 23, 42, 0.75);
+  background: rgba(0, 0, 0, 0.75);
   color: #fff;
   display: flex;
   align-items: center;
@@ -1044,7 +1044,7 @@
   margin-top: 10px;
   background: transparent;
   border: none;
-  color: #2563eb;
+  color: #000000;
   font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
@@ -1078,7 +1078,7 @@
 .toggleInfoTitle {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #0f172a;
+  color: #000000;
   margin-bottom: 2px;
 }
 
@@ -1123,7 +1123,7 @@
 }
 
 .toggle input:checked + .toggleSlider {
-  background: #0f172a;
+  background: #000000;
 }
 
 .toggle input:checked + .toggleSlider::before {
@@ -1148,7 +1148,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #0f172a;
+  background: #000000;
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -1160,7 +1160,7 @@
 }
 
 .submitBtn:hover {
-  background: #1e293b;
+  background: #222222;
 }
 
 .submitBtn:disabled {
@@ -1192,7 +1192,7 @@
 }
 
 .metafieldEmpty a {
-  color: #2563eb;
+  color: #000000;
   font-weight: 600;
   text-decoration: none;
 }

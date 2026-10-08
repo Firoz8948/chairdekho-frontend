@@ -9,7 +9,7 @@
   flex: 1;
   max-width: var(--container-md);
   margin: 0 auto;
-  padding: clamp(48px, 6vw, 80px) var(--gutter-inline);
+  padding: clamp(var(--section-space-mobile), 6vw, 80px) var(--gutter-inline);
   width: 100%;
 }
 
@@ -23,6 +23,7 @@
 }
 
 .groupTitle {
+  text-align: center;
   font-family: var(--font-family-heading);
   font-size: var(--text-h2);
   font-weight: 400;
@@ -103,4 +104,15 @@
   color: var(--text-muted);
   font-size: var(--text-body);
   line-height: 1.7;
+}
+
+.faqLink {
+  color: #000000;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.faqLink:hover {
+  color: var(--accent);
 }

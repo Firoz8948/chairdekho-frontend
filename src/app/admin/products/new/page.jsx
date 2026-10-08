@@ -388,8 +388,8 @@ export default function AddProductPage() {
               <code>&lt;img src=&quot;...&quot; /&gt;</code> tag).
             </p>
             <div className={styles.codeExample}>{`<ul>
-  <li>Stylist</li>
-  <li>Elegance</li>
+  <li>Sturdy build</li>
+  <li>Easy to clean</li>
 </ul>`}</div>
             <textarea
               className={`${styles.formTextarea} ${styles.formTextareaTall}`}

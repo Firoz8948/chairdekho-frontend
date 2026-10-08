@@ -44,8 +44,8 @@ export default function CartPage() {
               <h1 className={styles.sectionTitle}>YOUR CART</h1>
               <p className={styles.sectionSubtitle}>
                 {totalItems === 0
-                  ? 'Your bag is empty'
-                  : `${totalItems} item${totalItems === 1 ? '' : 's'} in your bag`}
+                  ? 'Your cart is empty'
+                  : `${totalItems} item${totalItems === 1 ? '' : 's'} in your cart`}
               </p>
             </div>
             {items.length > 0 && (

@@ -1,0 +1,129 @@
+.bar {
+  position: relative;
+  z-index: 90;
+  width: 100%;
+  background: #3b2a20;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.inner {
+  max-width: var(--container-2xl);
+  margin: 0 auto;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 var(--gutter-inline);
+}
+
+.track {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  gap: clamp(20px, 2.6vw, 40px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Centres the row when it fits, without clipping the first link once it overflows */
+.link:first-child {
+  margin-left: auto;
+}
+
+.link:last-child {
+  margin-right: auto;
+}
+
+.link {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: #c4a484;
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+
+.link:hover,
+.linkActive {
+  color: #ffffff;
+}
+
+.link:hover::after,
+.linkActive::after {
+  transform: scaleX(1);
+}
+
+.arrow {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px !important;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+.arrow:hover:not(:disabled) {
+  background: #ffffff;
+  color: #3b2a20;
+}
+
+.arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+@media (max-width: 768px) {
+  .inner {
+    height: 44px;
+    padding: 0;
+  }
+
+  .track {
+    gap: 22px;
+    padding: 0 clamp(16px, 4vw, 24px);
+    scroll-padding-inline: clamp(16px, 4vw, 24px);
+  }
+
+  .link {
+    font-size: var(--text-micro);
+  }
+
+  .arrow {
+    display: none;
+  }
+}

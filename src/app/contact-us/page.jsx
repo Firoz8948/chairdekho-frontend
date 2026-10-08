@@ -3,12 +3,12 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import PageHeroBanner from '@/components/PageHeroBanner/PageHeroBanner';
 import { Mail, Phone, Clock, MapPin } from 'lucide-react';
-import { pageMetadata } from '@/lib/seo';
+import { CONTACT, pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
-  title: 'Contact Us | Lansdowne Leather',
+  title: 'Contact Us | ChairDekho – Chair Shop in Nalasopara, Vasai Virar',
   description:
-    'Get in touch with the Lansdowne Leather team for orders, returns or product questions. Reach us via email, phone, or send us a message directly.',
+    'Contact ChairDekho for chair orders, bulk enquiries, returns or product questions. Call, WhatsApp or visit us in Nalasopara West, Vasai-Virar.',
   path: '/contact-us',
 });
 
@@ -16,14 +16,14 @@ const contactInfo = [
   {
     icon: Mail,
     label: 'Email Support',
-    value: 'lansdowneleather1@gmail.com',
+    value: CONTACT.email,
     extra: 'We typically respond within 24 hours',
   },
   {
     icon: Phone,
-    label: 'Customer Helpline',
-    value: '+91 89795 43500',
-    extra: 'Available during business hours',
+    label: 'Call / WhatsApp',
+    value: CONTACT.phone,
+    extra: 'Orders, bulk enquiries and support',
   },
   {
     icon: Clock,
@@ -33,9 +33,9 @@ const contactInfo = [
   },
   {
     icon: MapPin,
-    label: 'Registered Office',
-    value: 'JBS and Co',
-    extra: 'Sadar Bazaar, Lansdowne, Uttarakhand, 246155',
+    label: 'Store Address',
+    value: 'ChairDekho by PrimeCraft',
+    extra: `${CONTACT.address} · GST - ${CONTACT.gstin}`,
   },
 ];
 

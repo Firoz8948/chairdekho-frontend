@@ -1,26 +1,48 @@
 import { ASSETS } from '@/lib/assets';
 
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://lansdowneleather.com').replace(
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://chairdekho.com').replace(
   /\/+$/,
   ''
 );
-export const BRAND = 'Lansdowne Leather';
-export const SOCIAL_LINKS = ['https://www.instagram.com/leather_by_jbs/'];
-export const HOME_TITLE = 'Genuine Leather Wallets, Bags & Belts for Men & Women | Lansdowne';
+export const BRAND = 'ChairDekho';
+export const INSTAGRAM_URL = 'https://www.instagram.com/chairdekho/';
+export const SOCIAL_LINKS = [INSTAGRAM_URL];
+export const CONTACT = {
+  phone: '+91 96991 64131',
+  phoneIntl: '+91-96991-64131',
+  whatsapp: '919699164131',
+  email: 'brjangu29@gmail.com',
+  street: 'Umadevi Mandir, Umrale, Samel Pada',
+  locality: 'Nalasopara West, Vasai-Virar',
+  region: 'Maharashtra',
+  postalCode: '401203',
+  address: 'Umadevi Mandir, Umrale, Samel Pada, Nalasopara West, Vasai-Virar, Maharashtra 401203',
+  mapsUrl: 'https://maps.app.goo.gl/U9bcHmccejspLza47',
+  gstin: '27AQEPR1415Q1ZF',
+};
+export const SERVICE_AREAS = ['Vasai', 'Virar', 'Nalasopara', 'Naigaon', 'Bhayandar', 'Mira Road'];
+export const HOME_TITLE = 'All Types of Chairs at Affordable Prices in Vasai Virar | ChairDekho';
 export const HOME_DESCRIPTION =
-  'Shop 100% genuine leather wallets, handbags, sling bags, laptop bags and belts for men and women. Secure checkout and cash on delivery across India.';
+  'All types of chairs available – plastic, arm, armless, dining, garden, office & kids chairs. Buy now at affordable prices in Vasai, Virar & Nalasopara.';
 export const SITE_KEYWORDS = [
-  'genuine leather',
-  'leather wallet for men',
-  'leather wallet for women',
-  'leather bags for women',
-  'leather bags for men',
-  'leather handbag for women',
-  'leather sling bag',
-  'leather laptop bag',
-  'leather belt for men',
-  'leather card holder',
-  'Lansdowne Leather',
+  'chairs in Vasai',
+  'chairs in Virar',
+  'chair shop in Vasai Virar',
+  'chair shop in Nalasopara',
+  'buy chairs online',
+  'affordable chairs',
+  'chairs at best price',
+  'plastic chairs',
+  'plastic chair price',
+  'arm chairs',
+  'armless chairs',
+  'dining chairs',
+  'garden chairs',
+  'office chairs',
+  'kids chairs',
+  'plastic stools',
+  'chairs near me',
+  'ChairDekho',
 ];
 
 export const DEFAULT_OG_IMAGE = {
@@ -81,27 +103,25 @@ export const truncate = (text, max) => {
   return `${atWord.replace(/[\s,.;:–—-]+$/, '')}…`;
 };
 
-/** Drops the "| LANSDOWNE LEATHER" style suffix admins add to product names. */
+/** Drops the "| CHAIRDEKHO" style suffix admins add to product names. */
 export const cleanProductName = (name) =>
   String(name || '')
-    .replace(/\s*[|–—-]\s*lansdown(e)?\s+leather\s*$/i, '')
+    .replace(/\s*[|–—-]\s*chair\s*dekho(\.com)?\s*$/i, '')
     .replace(/\s+/g, ' ')
     .trim();
 
 const PRODUCT_TYPES = [
-  { key: 'card holder', label: 'card holder', plural: 'card holders', re: /card\s*holder/i },
-  { key: 'laptop bag', label: 'laptop bag', plural: 'laptop bags', re: /laptop|office\s+bag|briefcase/i },
-  { key: 'sling bag', label: 'sling bag', plural: 'sling bags', re: /sling/i },
-  { key: 'crossbody bag', label: 'crossbody bag', plural: 'crossbody bags', re: /cross\s*body/i },
-  { key: 'tote bag', label: 'tote bag', plural: 'tote bags', re: /\btote/i },
-  { key: 'handbag', label: 'handbag', plural: 'handbags', re: /hand\s*bag|purse/i },
-  { key: 'wallet', label: 'wallet', plural: 'wallets', re: /wallet/i },
-  { key: 'belt', label: 'belt', plural: 'belts', re: /\bbelt/i },
-  { key: 'bag', label: 'bag', plural: 'bags', re: /\bbag/i },
+  { key: 'office chair', label: 'office chair', plural: 'office chairs', re: /office|revolving|executive|ergonomic|computer|study/i },
+  { key: 'kids chair', label: 'kids chair', plural: 'kids chairs', re: /\bkids?\b|child|baby/i },
+  { key: 'garden chair', label: 'garden chair', plural: 'garden chairs', re: /garden|outdoor|patio|lawn|balcony/i },
+  { key: 'dining chair', label: 'dining chair', plural: 'dining chairs', re: /dining|cafe|restaurant/i },
+  { key: 'armless chair', label: 'armless chair', plural: 'armless chairs', re: /armless|without\s+arms?/i },
+  { key: 'arm chair', label: 'arm chair', plural: 'arm chairs', re: /arm\s*chair|with\s+arms?/i },
+  { key: 'stool', label: 'stool', plural: 'stools', re: /\bstools?\b/i },
+  { key: 'table', label: 'table', plural: 'tables', re: /\btables?\b/i },
+  { key: 'plastic chair', label: 'plastic chair', plural: 'plastic chairs', re: /plastic|moulded|molded|monobloc/i },
+  { key: 'chair', label: 'chair', plural: 'chairs', re: /\bchairs?\b/i },
 ];
-
-const TYPE_WORD_RE =
-  /\b(card\s*holder|laptop\s+bag|sling\s+bag|crossbody\s+bag|tote(\s+sling)?\s+bag|tote|hand\s*bag|wallet|belt|bag)\b/i;
 
 export function detectProductType(product) {
   const metaType = product?.metafields?.product_type;
@@ -113,17 +133,6 @@ export function detectProductType(product) {
   }
   return null;
 }
-
-export function detectGender(product) {
-  const text = `${product?.name || ''} ${stripHtml(product?.description || '').slice(0, 300)}`;
-  if (/\bunisex\b|men\s*(&|and)\s*women|women\s*(&|and)\s*men/i.test(text)) return 'unisex';
-  if (/\b(for\s+women|women'?s|ladies|female)\b/i.test(text)) return 'women';
-  if (/\b(for\s+men|men'?s|gents|male)\b/i.test(text)) return 'men';
-  return null;
-}
-
-const genderPhrase = (gender) =>
-  gender === 'men' ? 'for Men' : gender === 'women' ? 'for Women' : gender === 'unisex' ? 'for Men & Women' : '';
 
 const metaValue = (product, key) => stripHtml(product?.metafields?.[key] || '');
 
@@ -144,31 +153,16 @@ export function getHighlights(product, defs = []) {
   return list.filter((h) => h.value && !/faq/i.test(h.key) && h.value.length <= 80);
 }
 
-function withLeatherKeyword(name, { genuine }) {
-  const prefix = genuine ? 'Genuine Leather' : 'Leather';
-  if (/genuine\s+leather/i.test(name)) return name;
-  if (/\bleather\b/i.test(name)) {
-    return genuine ? name.replace(/\bleather\b/i, (m) => `Genuine ${m}`) : name;
-  }
-  if (TYPE_WORD_RE.test(name)) return name.replace(TYPE_WORD_RE, (m) => `${prefix} ${m}`);
-  return `${name} – ${prefix}`;
-}
-
 export function buildProductTitle(product) {
   const override = String(product?.seo_title || '').trim();
   if (override) return override;
 
-  const name = cleanProductName(product?.name) || 'Leather Product';
-  const genuine = withLeatherKeyword(name, { genuine: true });
-  const leather = withLeatherKeyword(name, { genuine: false });
+  const name = cleanProductName(product?.name) || 'Chair';
   const candidates = [
-    `${genuine} | ${BRAND}`,
-    `${leather} | ${BRAND}`,
-    `${genuine} | Lansdowne`,
-    `${leather} | Lansdowne`,
+    `${name} – Best Price in Vasai Virar | ${BRAND}`,
+    `${name} – Best Price | ${BRAND}`,
     `${name} | ${BRAND}`,
-    genuine,
-    leather,
+    name,
   ];
   return candidates.find((c) => c.length <= TITLE_MAX) || truncate(name, TITLE_MAX);
 }
@@ -208,12 +202,12 @@ export function buildProductDescription(product, defs = []) {
   const override = String(product?.seo_description || '').trim();
   if (override) return truncate(override, DESCRIPTION_MAX);
 
-  const name = cleanProductName(product?.name) || 'this leather product';
+  const name = cleanProductName(product?.name) || 'this chair';
   const { low } = getPriceRange(product);
   const price = formatInr(low);
-  const lead = `Buy ${name} online${price ? ` at ${price}` : ''} – 100% genuine leather by ${BRAND}.`;
+  const lead = `Buy ${name} online${price ? ` at ${price}` : ''} from ${BRAND} – affordable chairs delivered in Vasai Virar.`;
 
-  const highlightKeys = ['color', 'design', 'finish', 'size', 'card_capacity', 'weight'];
+  const highlightKeys = ['color', 'material', 'design', 'finish', 'size', 'weight'];
   const highlightValues = highlightKeys
     .map((key) => metaValue(product, key))
     .filter((v) => v && v.length <= 30);
@@ -238,20 +232,19 @@ export function buildProductDescription(product, defs = []) {
 export function buildProductKeywords(product) {
   const name = cleanProductName(product?.name);
   const type = detectProductType(product);
-  const gender = detectGender(product);
   const color = metaValue(product, 'color');
   const words = [name];
   if (type) {
-    words.push(`leather ${type.label}`, `genuine leather ${type.label}`);
-    if (gender === 'unisex') {
-      words.push(`leather ${type.label} for men`, `leather ${type.label} for women`);
-    } else if (gender) {
-      words.push(`leather ${type.label} for ${gender}`, `${type.label} for ${gender}`);
-    }
-    if (color) words.push(`${color.toLowerCase()} leather ${type.label}`);
+    words.push(
+      type.plural,
+      `${type.label} price`,
+      `buy ${type.label} online`,
+      `${type.plural} in Vasai Virar`
+    );
+    if (color) words.push(`${color.toLowerCase()} ${type.label}`);
   }
   if (product?.category) words.push(product.category);
-  words.push('genuine leather', BRAND);
+  words.push('chairs in Vasai Virar', 'affordable chairs', BRAND);
   return [...new Set(words.filter(Boolean))];
 }
 
@@ -300,8 +293,6 @@ export function buildProductMetadata(product, defs = []) {
   };
 }
 
-const GENDER_SCHEMA = { men: 'male', women: 'female', unisex: 'unisex' };
-
 // Must stay in sync with /policy/shipping-policy and /policy/refund-policy.
 const OFFER_SHIPPING_DETAILS = {
   '@type': 'OfferShippingDetails',
@@ -331,7 +322,6 @@ export function buildProductJsonLd(product, defs = []) {
   const { low, high } = getPriceRange(product);
   const availability =
     getTotalStock(product) > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock';
-  const gender = detectGender(product);
   const material = metaValue(product, 'material');
   const color = metaValue(product, 'color');
   const offerCount = (product?.variants || []).flatMap((v) => v?.options || []).length;
@@ -374,11 +364,8 @@ export function buildProductJsonLd(product, defs = []) {
     sku: String(product.id),
     brand: { '@type': 'Brand', name: BRAND },
     category: product.category || undefined,
-    material: material ? (/leather/i.test(material) ? 'Genuine Leather' : material) : 'Genuine Leather',
+    material: material || undefined,
     color: color || undefined,
-    audience: gender
-      ? { '@type': 'PeopleAudience', suggestedGender: GENDER_SCHEMA[gender] }
-      : undefined,
     additionalProperty: getHighlights(product, defs).map((h) => ({
       '@type': 'PropertyValue',
       name: h.name,
@@ -404,21 +391,34 @@ export function buildBreadcrumbJsonLd(items) {
 export function buildOrganizationJsonLd() {
   return {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
+    '@type': 'FurnitureStore',
     '@id': `${SITE_URL}/#organization`,
     name: BRAND,
+    description: HOME_DESCRIPTION,
     url: SITE_URL,
     logo: absoluteUrl('/icon.png'),
     image: ASSETS.ogImage,
-    sameAs: SOCIAL_LINKS,
-    email: 'lansdowneleather1@gmail.com',
+    ...(SOCIAL_LINKS.length ? { sameAs: SOCIAL_LINKS } : {}),
+    email: CONTACT.email,
+    telephone: CONTACT.phoneIntl,
+    priceRange: '₹',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: CONTACT.street,
+      addressLocality: CONTACT.locality,
+      addressRegion: CONTACT.region,
+      postalCode: CONTACT.postalCode,
+      addressCountry: 'IN',
+    },
+    taxID: CONTACT.gstin,
+    areaServed: SERVICE_AREAS.map((name) => ({ '@type': 'City', name })),
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer service',
-      telephone: '+91-89795-43500',
-      email: 'lansdowneleather1@gmail.com',
+      telephone: CONTACT.phoneIntl,
+      email: CONTACT.email,
       areaServed: 'IN',
-      availableLanguage: ['en', 'hi'],
+      availableLanguage: ['en', 'hi', 'mr'],
     },
   };
 }
@@ -435,26 +435,20 @@ export function buildWebsiteJsonLd() {
   };
 }
 
-function categoryAudience(name) {
-  if (/women|ladies/i.test(name)) return '';
-  if (/\bmen\b|gents/i.test(name)) return '';
-  if (/belt/i.test(name)) return 'for Men';
-  return 'for Men & Women';
-}
-
 export function buildCategorySeo(category) {
   const name = String(category?.name || '').trim();
-  const withLeather = /leather/i.test(name) ? name.replace(/\bleather\b/i, 'Genuine Leather') : `Genuine Leather ${name}`;
-  const audience = categoryAudience(name);
-  const autoTitle = [`${withLeather} ${audience}`.trim(), BRAND].join(' | ');
-  const title =
-    String(category?.seo_title || '').trim() ||
-    (autoTitle.length <= TITLE_MAX ? autoTitle : `${withLeather} ${audience}`.trim());
+  const autoTitle =
+    [
+      `${name} – Buy at Best Price in Vasai Virar | ${BRAND}`,
+      `${name} at Affordable Prices | ${BRAND}`,
+      `${name} | ${BRAND}`,
+    ].find((c) => c.length <= TITLE_MAX) || name;
+  const title = String(category?.seo_title || '').trim() || autoTitle;
 
   const intro = stripHtml(category?.description);
   const parts = [
     intro ? (/[.!?]$/.test(intro) ? intro : `${intro}.`) : '',
-    `Shop 100% genuine ${/leather/i.test(name) ? '' : 'leather '}${name.toLowerCase()} ${audience.toLowerCase()} at ${BRAND}.`.replace(/\s+/g, ' '),
+    `Shop ${name.toLowerCase()} at affordable prices from ${BRAND}, delivered across Vasai, Virar & Nalasopara.`,
     'Secure checkout & cash on delivery.',
   ];
   let autoDescription = '';

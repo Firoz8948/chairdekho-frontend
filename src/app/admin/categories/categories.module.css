@@ -15,7 +15,7 @@
 .title {
   font-size: 1.6rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #000000;
   letter-spacing: -0.02em;
   margin-bottom: 4px;
 }
@@ -29,7 +29,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #0f172a;
+  background: #000000;
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -42,7 +42,7 @@
 }
 
 .addBtn:hover {
-  background: #1e293b;
+  background: #222222;
   transform: translateY(-1px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
 }
@@ -79,7 +79,7 @@
   background: transparent;
   outline: none;
   font-size: 0.875rem;
-  color: #1e293b;
+  color: #222222;
   width: 100%;
 }
 
@@ -174,7 +174,7 @@
 
 .categoryName {
   font-weight: 600;
-  color: #0f172a;
+  color: #000000;
   font-size: 0.95rem;
 }
 
@@ -235,7 +235,7 @@
 
 .actionBtn:hover {
   background: #f1f5f9;
-  color: #0f172a;
+  color: #000000;
   border-color: #cbd5e1;
 }
 
@@ -267,7 +267,7 @@
 .emptyTitle {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #1e293b;
+  color: #222222;
   margin-bottom: 6px;
 }
 
@@ -282,7 +282,7 @@
 .modalOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(4px);
   z-index: 1000;
   display: flex;
@@ -312,7 +312,7 @@
 .modalTitle {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #000000;
 }
 
 .modalCloseBtn {
@@ -330,7 +330,7 @@
 
 .modalCloseBtn:hover {
   background: #f1f5f9;
-  color: #0f172a;
+  color: #000000;
 }
 
 .modalBody {
@@ -362,7 +362,7 @@
   border-radius: 8px;
   padding: 10px 14px;
   font-size: 0.875rem;
-  color: #0f172a;
+  color: #000000;
   outline: none;
   transition: border-color 0.15s, box-shadow 0.15s;
   width: 100%;
@@ -370,8 +370,8 @@
 
 .formInput:focus,
 .formTextarea:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  border-color: #000000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
 }
 
 .formTextarea {
@@ -396,7 +396,7 @@
 }
 
 .imagePicker:hover {
-  border-color: #3b82f6;
+  border-color: #000000;
   background: #f0f7ff;
 }
 
@@ -420,7 +420,7 @@
   position: absolute;
   top: 8px;
   right: 8px;
-  background: rgba(15, 23, 42, 0.75);
+  background: rgba(0, 0, 0, 0.75);
   color: #ffffff;
   border: none;
   border-radius: 50%;
@@ -451,7 +451,7 @@
 .toggleCheckbox {
   width: 18px;
   height: 18px;
-  accent-color: #0f172a;
+  accent-color: #000000;
   cursor: pointer;
 }
 
@@ -484,7 +484,7 @@
 }
 
 .btnSubmit {
-  background: #0f172a;
+  background: #000000;
   border: none;
   color: #ffffff;
   border-radius: 8px;
@@ -496,7 +496,7 @@
 }
 
 .btnSubmit:hover {
-  background: #1e293b;
+  background: #222222;
 }
 
 .btnSubmit:disabled {

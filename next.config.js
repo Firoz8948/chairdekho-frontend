@@ -22,8 +22,8 @@ const nextConfig = {
     return [
       {
         source: '/:path*',
-        has: [{ type: 'host', value: 'www.lansdowneleather.com' }],
-        destination: 'https://lansdowneleather.com/:path*',
+        has: [{ type: 'host', value: 'www.chairdekho.com' }],
+        destination: 'https://chairdekho.com/:path*',
         permanent: true,
       },
       { source: '/home', destination: '/', permanent: true },

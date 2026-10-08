@@ -1,38 +1,46 @@
+import Image from 'next/image';
 import styles from './about.module.css';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import PageHeroBanner from '@/components/PageHeroBanner/PageHeroBanner';
-import { Shield, Gem, Leaf, Heart } from 'lucide-react';
+import { Store, PackageCheck, BadgeCheck, Wallet } from 'lucide-react';
+import WhyChooseUs from '@/app/home/components/WhyChooseUs';
 import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
-  title: 'About Us | Lansdowne Leather – Genuine Leather Goods from Uttarakhand',
+  title: 'About Us | ChairDekho – Chair Shop in Vasai Virar',
   description:
-    'Handpicked genuine leather wallets, bags and belts from the hills of Uttarakhand. Born in Lansdowne, inspired by mountains, crafted for everyday journeys.',
+    'ChairDekho is your local chair shop in Nalasopara, Vasai-Virar. All types of chairs – plastic, arm, dining, garden, office and kids – at affordable prices.',
   path: '/about',
 });
 
-const values = [
+const WHY_POINTS = [
   {
-    icon: Gem,
-    title: 'Uncompromising Quality',
-    desc: 'Every Lansdowne product undergoes rigorous quality checks. We source the finest materials and partner with skilled artisans to deliver products that exceed expectations.',
+    icon: Store,
+    title: 'See It Before You Buy',
+    desc: 'Visit our shop near Umadevi Mandir, Nalasopara West, and sit on every chair before you decide.',
   },
   {
-    icon: Shield,
-    title: 'Heritage & Trust',
-    desc: 'Rooted in the tradition of Indian craftsmanship, we blend heritage techniques with modern aesthetics — building a brand you can trust for years to come.',
+    icon: PackageCheck,
+    title: 'Retail & Wholesale',
+    desc: 'One chair for your home or hundreds for a banquet hall – bulk orders get wholesale rates.',
   },
   {
-    icon: Leaf,
-    title: 'Responsible Sourcing',
-    desc: 'We are committed to ethical sourcing and sustainable practices. Our supply chain prioritises fair wages, minimal waste, and eco-conscious packaging.',
+    icon: BadgeCheck,
+    title: 'Trusted Brands',
+    desc: 'Durable chairs from names like Prime, checked by our team before every dispatch.',
   },
   {
-    icon: Heart,
-    title: 'Customer First',
-    desc: 'From curated collections to responsive support, everything we do is designed around you. Your satisfaction is the measure of our success.',
+    icon: Wallet,
+    title: 'Pay Your Way',
+    desc: 'Cash on delivery, UPI, cards or net banking, all through a secure checkout.',
   },
+];
+
+const WHY_STATS = [
+  { value: '5.0★', label: 'Google rating' },
+  { value: '100+', label: 'Happy reviews' },
+  { value: '10–7', label: 'Open Mon–Sat' },
 ];
 
 export default function AboutPage() {
@@ -40,8 +48,8 @@ export default function AboutPage() {
     <div className={styles.container}>
       <Header />
       <PageHeroBanner
-        title="About Lansdowne"
-        subtitle="Crafted with passion, designed for everyday distinction."
+        title="About ChairDekho"
+        subtitle="All types of chairs, at affordable prices, in Vasai Virar."
       />
 
       <main className={styles.main}>
@@ -49,86 +57,70 @@ export default function AboutPage() {
         <section className={styles.storySection}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>OUR STORY</h2>
-            <p className={styles.sectionSubtitle}>The Story Behind Our Craft</p>
+            <p className={styles.sectionSubtitle}>A Chair for Every Space</p>
           </div>
 
           <div className={styles.storyContent}>
-            <p className={styles.paragraph}>
-              Handpicked leather goods from the hills of Uttarakhand.
-            </p>
-            <p className={styles.paragraph}>
-              Born in Lansdowne, Uttarakhand. Inspired by mountains. Crafted for everyday journeys.
-            </p>
+            <div className={styles.storyMedia}>
+              <Image
+                src="/images/brand/chakladekho.webp"
+                alt="ChairDekho logo"
+                width={1200}
+                height={542}
+                sizes="(max-width: 900px) 100vw, 520px"
+                className={styles.storyImage}
+              />
+            </div>
+            <div className={styles.storyText}>
+              <p className={styles.paragraph}>
+                ChairDekho started with a simple idea: buying a good chair should be easy and
+                affordable. From plastic chairs and arm chairs to dining, garden, office and kids
+                chairs, we bring all types of chairs together in one place.
+              </p>
+              <p className={styles.paragraph}>
+                Proudly based in Nalasopara West, Vasai-Virar, we supply chairs to homes, shops,
+                offices, restaurants and events across Vasai, Virar and Nalasopara.
+              </p>
+            </div>
           </div>
         </section>
 
         {/* ── Our Values ── */}
-        <section className={styles.valuesSection}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>OUR VALUES</h2>
-            <p className={styles.sectionSubtitle}>What We Stand For</p>
-          </div>
-          <div className={styles.valuesGrid}>
-            {values.map((v, idx) => {
-              const IconComp = v.icon;
-              return (
-                <div key={idx} className={styles.valueCard}>
-                  <div className={styles.valueIcon}>
-                    <IconComp size={24} strokeWidth={1.5} />
-                  </div>
-                  <h3 className={styles.valueTitle}>{v.title}</h3>
-                  <p className={styles.valueDesc}>{v.desc}</p>
-                </div>
-              );
-            })}
-          </div>
-        </section>
+        <div className={styles.valuesWrap}>
+          <WhyChooseUs title="OUR VALUES" subtitle="What We Stand For" />
+        </div>
 
-        {/* ── Why Lansdowne ── */}
+        {/* ── Why ChairDekho ── */}
         <section className={styles.whySection}>
           <div className={styles.whyCard}>
-            <div className={styles.sectionHeader}>
-              <h2 className={`${styles.sectionTitle} ${styles.sectionTitleOnDark}`}>WHY LANSDOWNE</h2>
-              <p className={`${styles.sectionSubtitle} ${styles.sectionSubtitleOnDark}`}>What Sets Us Apart</p>
+            <div className={styles.whyIntro}>
+              <h2 className={styles.whyTitle}>WHY CHAIRDEKHO</h2>
+              <p className={styles.whySubtitle}>Your neighbourhood chair wholesaler</p>
+              <p className={styles.whyLead}>
+                From a single chair for your balcony to hundreds for a wedding hall, we make buying
+                chairs in Vasai-Virar simple, honest and quick.
+              </p>
+              <ul className={styles.whyStats}>
+                {WHY_STATS.map((stat) => (
+                  <li key={stat.label} className={styles.whyStat}>
+                    <strong className={styles.whyStatValue}>{stat.value}</strong>
+                    <span className={styles.whyStatLabel}>{stat.label}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className={styles.whyGrid}>
-              <div className={styles.whyItem}>
-                <span className={styles.whyNumber}>01</span>
-                <div>
-                  <h4 className={styles.whyItemTitle}>Curated, Not Mass-Produced</h4>
-                  <p className={styles.whyItemDesc}>
-                    Every product is carefully selected and tested before it earns a place in our collection. We believe in quality over quantity.
-                  </p>
-                </div>
-              </div>
-              <div className={styles.whyItem}>
-                <span className={styles.whyNumber}>02</span>
-                <div>
-                  <h4 className={styles.whyItemTitle}>Direct-to-Consumer Pricing</h4>
-                  <p className={styles.whyItemDesc}>
-                    By selling directly to you, we eliminate middlemen and pass on the savings — delivering premium quality at honest prices.
-                  </p>
-                </div>
-              </div>
-              <div className={styles.whyItem}>
-                <span className={styles.whyNumber}>03</span>
-                <div>
-                  <h4 className={styles.whyItemTitle}>Hassle-Free Experience</h4>
-                  <p className={styles.whyItemDesc}>
-                    From seamless checkout to swift delivery and easy returns — we have designed every touchpoint to respect your time and trust.
-                  </p>
-                </div>
-              </div>
-              <div className={styles.whyItem}>
-                <span className={styles.whyNumber}>04</span>
-                <div>
-                  <h4 className={styles.whyItemTitle}>Built for the Indian Consumer</h4>
-                  <p className={styles.whyItemDesc}>
-                    Our products are designed for Indian tastes, climates, and lifestyles — with secure Indian payment options and nationwide delivery.
-                  </p>
-                </div>
-              </div>
-            </div>
+
+            <ul className={styles.whyGrid}>
+              {WHY_POINTS.map(({ icon: Icon, title, desc }) => (
+                <li key={title} className={styles.whyItem}>
+                  <span className={styles.whyIcon}>
+                    <Icon size={22} strokeWidth={1.6} aria-hidden="true" />
+                  </span>
+                  <h3 className={styles.whyItemTitle}>{title}</h3>
+                  <p className={styles.whyItemDesc}>{desc}</p>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
       </main>

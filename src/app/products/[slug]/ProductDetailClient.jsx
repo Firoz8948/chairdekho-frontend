@@ -5,6 +5,7 @@ import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
+import CategoryMarquee from '@/app/home/components/CategoryMarquee';
 import productService from '@/lib/services/products';
 import { useCart } from '@/context/CartContext';
 import toast from 'react-hot-toast';
@@ -45,12 +46,12 @@ const stripHtml = (raw) =>
 
 const DEFAULT_FAQS = [
   {
-    q: 'What is the quality of Lansdowne products?',
-    a: 'Every piece is made with carefully selected materials and finished for everyday durability. We check stitching, hardware, and surface quality before anything ships.',
+    q: 'What is the quality of ChairDekho chairs?',
+    a: 'Every chair is made with carefully selected materials and finished for everyday durability. We check strength, stability and surface finish before anything ships.',
   },
   {
     q: 'How should I care for this product?',
-    a: 'Wipe with a soft dry cloth after use. Keep away from prolonged moisture and direct heat. For leather pieces, use a mild leather conditioner occasionally.',
+    a: 'Wipe with a damp cloth and mild soap. Avoid sharp objects and long exposure to strong heat. For office chairs, check the screws and wheels from time to time.',
   },
   {
     q: 'How long does delivery take?',
@@ -442,7 +443,7 @@ function ProductDetailPageInner({ initialProduct, initialDefs, initialColor }) {
     }
     const { option, variantName, selections } = getSelectedVariantMeta();
     addItem(product, { quantity: qty, option, variantName, selections });
-    toast.success(`${product.name} added to bag`);
+    toast.success(`${product.name} added to cart`);
     router.push('/cart');
   };
 
@@ -450,7 +451,7 @@ function ProductDetailPageInner({ initialProduct, initialDefs, initialColor }) {
     e.preventDefault();
     e.stopPropagation();
     addItem(item, { quantity: 1 });
-    toast.success(`${item.name} added to bag`);
+    toast.success(`${item.name} added to cart`);
     router.push('/cart');
   };
 
@@ -596,6 +597,7 @@ function ProductDetailPageInner({ initialProduct, initialDefs, initialColor }) {
                   <div className={styles.priceRow}>
                     <div className={styles.priceGroup}>
                       <span className={styles.price}>{formatPrice(displayPrice)}</span>
+                      <span className={styles.priceUnit}>/Pc</span>
                       {hasDiscount && (
                         <span className={styles.mrp}>{formatPrice(displayMrp)}</span>
                       )}
@@ -750,33 +752,19 @@ function ProductDetailPageInner({ initialProduct, initialDefs, initialColor }) {
                       onClick={handleAddToBag}
                       disabled={!inStock}
                     >
-                      {inStock ? 'Add to Bag' : 'Out of Stock'}
+                      {inStock ? 'Add to Cart' : 'Out of Stock'}
                     </button>
                   </div>
 
                   <div className={styles.trustIcons}>
                     {[
-                      { src: ASSETS.authenticQuality, label: '100% Genuine Leather' },
-                      {
-                        src: ASSETS.madeWithCare,
-                        label: (
-                          <>
-                            Made with
-                            <br className={styles.trustLabelBreak} />
-                            <span className={styles.trustLabelDesktopJoin}> </span>
-                            Care
-                          </>
-                        ),
-                      },
-                      { src: ASSETS.secureShopping, label: 'Secure Shopping' },
-                      { src: ASSETS.expressDelivery, label: 'Express Delivery' },
+                      { src: ASSETS.qualityChecked, label: 'Quality Checked' },
+                      { src: ASSETS.multipleDesigns, label: 'Multiple Designs' },
+                      { src: ASSETS.wholesalePrice, label: 'Wholesale Price' },
+                      { src: ASSETS.googleRating, label: '5 Star Google Rating' },
                     ].map((item) => (
                       <div key={item.src} className={styles.trustIconItem}>
-                        <img
-                          src={item.src}
-                          alt={typeof item.label === 'string' ? item.label : 'Made with Care'}
-                          className={styles.trustIconImg}
-                        />
+                        <img src={item.src} alt="" className={styles.trustIconImg} />
                         <span className={styles.trustIconLabel}>{item.label}</span>
                       </div>
                     ))}
@@ -863,6 +851,7 @@ function ProductDetailPageInner({ initialProduct, initialDefs, initialColor }) {
           )}
         </div>
       </main>
+      <CategoryMarquee />
       <Footer />
     </div>
   );

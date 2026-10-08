@@ -11,7 +11,7 @@
   align-items: center;
   gap: 10px;
   font-weight: 700;
-  color: #0f172a;
+  color: #000000;
   margin-bottom: 20px;
 }
 
@@ -57,7 +57,7 @@
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   background: #f8fafc;
-  color: #0f172a;
+  color: #000000;
   font-size: 0.95rem;
   cursor: not-allowed;
 }

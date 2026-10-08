@@ -5,9 +5,9 @@ import PageHeroBanner from '@/components/PageHeroBanner/PageHeroBanner';
 import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
-  title: 'Privacy Policy | Lansdowne Leather',
+  title: 'Privacy Policy | ChairDekho',
   description:
-    'Learn how Lansdowne Leather collects, uses, and protects your personal information when you shop with us.',
+    'Learn how ChairDekho collects, uses, and protects your personal information when you shop with us.',
   path: '/policy/privacy-policy',
 });
 
@@ -74,7 +74,7 @@ export default function PrivacyPolicyPage() {
 
           <h2 className={styles.sectionHeading}>6. Third-Party Links</h2>
           <p className={styles.paragraph}>
-            Our website may contain links to third-party websites or services that are not operated by Lansdowne. We are not responsible for the privacy practices or content of these external sites. We encourage you to review the privacy policies of any third-party site you visit.
+            Our website may contain links to third-party websites or services that are not operated by ChairDekho. We are not responsible for the privacy practices or content of these external sites. We encourage you to review the privacy policies of any third-party site you visit.
           </p>
 
           <h2 className={styles.sectionHeading}>7. Your Rights</h2>
@@ -88,7 +88,7 @@ export default function PrivacyPolicyPage() {
             <li>Request a copy of your data in a portable format</li>
           </ul>
           <p className={styles.paragraph}>
-            To exercise any of these rights, please contact us at <strong>lansdowneleather1@gmail.com</strong>.
+            To exercise any of these rights, please contact us at <strong>brjangu29@gmail.com</strong>.
           </p>
 
           <h2 className={styles.sectionHeading}>8. Policy Updates</h2>
@@ -97,7 +97,7 @@ export default function PrivacyPolicyPage() {
           </p>
 
           <div className={styles.highlightBox}>
-            <p>If you have any questions about this Privacy Policy, please contact us at <strong>lansdowneleather1@gmail.com</strong> or call <strong>+91 89795 43500</strong>.</p>
+            <p>If you have any questions about this Privacy Policy, please contact us at <strong>brjangu29@gmail.com</strong> or call <strong>+91 96991 64131</strong>.</p>
           </div>
         </div>
       </main>

@@ -3,12 +3,13 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import JsonLd from '@/components/Seo/JsonLd';
 import { buildBreadcrumbJsonLd, buildCategorySeo, fetchApi, pageMetadata } from '@/lib/seo';
+import CategoryMarquee from '@/app/home/components/CategoryMarquee';
 import ShopScreen from './components/ShopScreen';
 import styles from './shop.module.css';
 
-const SHOP_TITLE = 'Shop Leather Wallets, Bags & Belts for Men & Women | Lansdowne';
+const SHOP_TITLE = 'Shop All Types of Chairs Online in Vasai Virar | ChairDekho';
 const SHOP_DESCRIPTION =
-  'Browse 100% genuine leather wallets, card holders, handbags, sling bags, laptop bags and belts for men and women. Secure checkout & cash on delivery.';
+  'Browse plastic, arm, armless, dining, garden, office and kids chairs and stools at affordable prices. Fast delivery in Vasai, Virar & Nalasopara. Cash on delivery.';
 
 async function findCategory(searchParams) {
   const slug = typeof searchParams?.category === 'string' ? searchParams.category.trim() : '';
@@ -60,8 +61,10 @@ export default async function ShopPage({ searchParams }) {
           fallback={
             <div className={styles.shopContent}>
               <div className={styles.pageHeader}>
-                <h1 className={styles.pageTitle}>Shop</h1>
-                <p className={styles.pageSubtitle}>Loading collection…</p>
+                <div className={styles.pageHeading}>
+                  <h1 className={styles.sectionTitle}>SHOP</h1>
+                  <p className={styles.sectionSubtitle}>Loading collection…</p>
+                </div>
               </div>
             </div>
           }
@@ -69,6 +72,7 @@ export default async function ShopPage({ searchParams }) {
           <ShopScreen />
         </Suspense>
       </main>
+      <CategoryMarquee />
       <Footer />
     </div>
   );

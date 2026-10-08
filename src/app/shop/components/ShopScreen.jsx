@@ -1,7 +1,6 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { SlidersHorizontal, ChevronDown } from 'lucide-react';
 import productService from '@/lib/services/products';
@@ -36,9 +35,6 @@ export default function ShopScreen() {
     searchParams.get('category') || ''
   );
   const [sort, setSort] = useState(searchParams.get('sort') || 'newest');
-  const [featuredOnly, setFeaturedOnly] = useState(false);
-  const [inStockOnly, setInStockOnly] = useState(false);
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   useEffect(() => {
     const fromUrl = searchParams.get('category') || '';
@@ -86,15 +82,9 @@ export default function ShopScreen() {
         category_slug: categorySlug || undefined,
         sort: sort || 'newest',
       });
-      let items = Array.isArray(data?.items) ? data.items : [];
-      if (featuredOnly) {
-        items = items.filter((p) => p.is_featured);
-      }
-      if (inStockOnly) {
-        items = items.filter((p) => Number(p.stock) > 0);
-      }
+      const items = Array.isArray(data?.items) ? data.items : [];
       setProducts(items);
-      setTotal(featuredOnly || inStockOnly ? items.length : data?.total ?? items.length);
+      setTotal(data?.total ?? items.length);
     } catch (err) {
       console.error(err);
       toast.error(err.message || 'Failed to load products');
@@ -103,7 +93,7 @@ export default function ShopScreen() {
     } finally {
       setLoading(false);
     }
-  }, [categorySlug, sort, featuredOnly, inStockOnly]);
+  }, [categorySlug, sort]);
 
   useEffect(() => {
     loadProducts();
@@ -114,12 +104,6 @@ export default function ShopScreen() {
     return categories.find((c) => c.slug === categorySlug)?.name || 'Shop';
   }, [categories, categorySlug]);
 
-  const handleCategoryChange = (slug) => {
-    setCategorySlug(slug);
-    syncUrl(slug, sort);
-    setMobileFiltersOpen(false);
-  };
-
   const handleSortChange = (value) => {
     setSort(value);
     syncUrl(categorySlug, value);
@@ -129,13 +113,11 @@ export default function ShopScreen() {
     e.preventDefault();
     e.stopPropagation();
     addItem(product, { quantity: 1 });
-    toast.success(`${product.name} added to bag`);
+    toast.success(`${product.name} added to cart`);
     router.push('/cart');
   };
 
   const clearFilters = () => {
-    setFeaturedOnly(false);
-    setInStockOnly(false);
     setCategorySlug('');
     setSort('newest');
     syncUrl('', 'newest');
@@ -151,130 +133,27 @@ export default function ShopScreen() {
     />
   );
 
-  const filterPanel = (
-    <>
-      <div className={styles.filterBlock}>
-        <h3 className={styles.filterTitle}>Category</h3>
-        <div className={styles.categoryList}>
-          <button
-            type="button"
-            className={`${styles.categoryItem} ${!categorySlug ? styles.categoryItemActive : ''}`}
-            onClick={() => handleCategoryChange('')}
-          >
-            All Products
-          </button>
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              type="button"
-              className={`${styles.categoryItem} ${
-                categorySlug === cat.slug ? styles.categoryItemActive : ''
-              }`}
-              onClick={() => handleCategoryChange(cat.slug)}
-            >
-              {cat.name}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className={styles.filterBlock}>
-        <h3 className={styles.filterTitle}>Sort by</h3>
-        <div className={styles.sortList}>
-          {SORT_OPTIONS.map((opt) => (
-            <button
-              key={opt.value}
-              type="button"
-              className={`${styles.sortItem} ${sort === opt.value ? styles.sortItemActive : ''}`}
-              onClick={() => handleSortChange(opt.value)}
-            >
-              {opt.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className={styles.filterBlock}>
-        <h3 className={styles.filterTitle}>Filters</h3>
-        <label className={styles.checkRow}>
-          <input
-            type="checkbox"
-            checked={featuredOnly}
-            onChange={(e) => setFeaturedOnly(e.target.checked)}
-          />
-          <span>Featured only</span>
-        </label>
-        <label className={styles.checkRow}>
-          <input
-            type="checkbox"
-            checked={inStockOnly}
-            onChange={(e) => setInStockOnly(e.target.checked)}
-          />
-          <span>In stock only</span>
-        </label>
-      </div>
-
-      <button type="button" className={styles.clearBtn} onClick={clearFilters}>
-        Clear all
-      </button>
-    </>
-  );
-
   return (
     <div className={styles.shopContent}>
       <div className={styles.pageHeader}>
-        <h1 className={styles.sectionTitle}>SHOP</h1>
-        <p className={styles.sectionSubtitle}>
-          {selectedCategoryName}
-          {!loading && (
-            <span className={styles.resultCount}>
-              {' '}
-              · {total} item{total === 1 ? '' : 's'}
-            </span>
-          )}
-        </p>
-      </div>
+        <div className={styles.pageHeading}>
+          <h1 className={styles.sectionTitle}>SHOP</h1>
+          <p className={styles.sectionSubtitle}>
+            {selectedCategoryName}
+            {!loading && (
+              <span className={styles.resultCount}>
+                {' '}
+                · {total} item{total === 1 ? '' : 's'}
+              </span>
+            )}
+          </p>
+        </div>
 
-      {/* Mobile category tabs */}
-      <div className={styles.mobileTabs}>
-        <button
-          type="button"
-          className={`${styles.mobileTab} ${!categorySlug ? styles.mobileTabActive : ''}`}
-          onClick={() => handleCategoryChange('')}
-        >
-          All
-        </button>
-        {categories.map((cat) => (
-          <button
-            key={cat.id}
-            type="button"
-            className={`${styles.mobileTab} ${
-              categorySlug === cat.slug ? styles.mobileTabActive : ''
-            }`}
-            onClick={() => handleCategoryChange(cat.slug)}
-          >
-            {cat.name}
-          </button>
-        ))}
-      </div>
-
-      {/* Mobile filter / sort row */}
-      <div className={styles.mobileToolbar}>
-        <button
-          type="button"
-          className={styles.mobileToolBtn}
-          onClick={() => setMobileFiltersOpen((o) => !o)}
-        >
-          <SlidersHorizontal size={16} />
-          Filter
-          <ChevronDown
-            size={14}
-            className={mobileFiltersOpen ? styles.chevronOpen : ''}
-          />
-        </button>
-        <div className={styles.mobileSortWrap}>
+        <label className={styles.sortControl}>
+          <SlidersHorizontal size={15} aria-hidden="true" />
+          <span className={styles.sortLabel}>Sort</span>
           <select
-            className={styles.mobileSortSelect}
+            className={styles.sortSelect}
             value={sort}
             onChange={(e) => handleSortChange(e.target.value)}
             aria-label="Sort products"
@@ -285,29 +164,24 @@ export default function ShopScreen() {
               </option>
             ))}
           </select>
-        </div>
+          <ChevronDown size={14} className={styles.sortChevron} aria-hidden="true" />
+        </label>
       </div>
 
-      {mobileFiltersOpen && (
-        <div className={styles.mobileFilterPanel}>{filterPanel}</div>
-      )}
-
       <div className={styles.layout}>
-        <aside className={styles.sidebar}>{filterPanel}</aside>
-
         <section className={styles.productsArea}>
           {loading ? (
             <div className={styles.productGrid}>
-              {[1, 2, 3, 4, 5, 6].map((n) => (
+              {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
                 <div key={n} className={`${styles.productCard} ${styles.productSkeleton}`} />
               ))}
             </div>
           ) : products.length === 0 ? (
             <div className={styles.emptyState}>
               <h2>No products found</h2>
-              <p>Try another category or clear your filters.</p>
+              <p>Try another category.</p>
               <button type="button" className={styles.clearBtn} onClick={clearFilters}>
-                Clear filters
+                Show all products
               </button>
             </div>
           ) : (

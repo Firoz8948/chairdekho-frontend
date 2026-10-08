@@ -8,7 +8,7 @@ const VIDEO_REVIEWS = [
   {
     id: 'v1',
     src: 'https://lansdowne-cdn.b-cdn.net/Reviews/review_video_1.mp4',
-    caption: 'Real customers, real leather — see why they chose Lansdowne.',
+    caption: 'Real customers, real homes — see why they chose ChairDekho.',
   },
 ];
 
@@ -31,12 +31,12 @@ const IMAGE_REVIEWS = [
   {
     id: 'i4',
     src: 'https://lansdowne-cdn.b-cdn.net/Reviews/review_4.png',
-    caption: 'Major General GD Bakshi Sir chooses Lansdowne',
+    caption: 'Major General GD Bakshi Sir',
   },
   {
     id: 'i5',
     src: 'https://lansdowne-cdn.b-cdn.net/Reviews/review_5.png',
-    caption: 'Boman Irani with Lansdowne',
+    caption: 'Boman Irani',
   },
   {
     id: 'i6',
@@ -193,6 +193,10 @@ function ImageReviewsMarquee() {
 export default function ReviewsShowcase() {
   // Video reviews hidden until more clips are ready — re-enable VideoReviewsCarousel below.
   const showVideoReviews = false;
+  // The photo reviews above belong to the previous brand; keep hidden until ChairDekho photos replace them.
+  const showImageReviews = false;
+
+  if (!showVideoReviews && !showImageReviews) return null;
 
   return (
     <>
@@ -206,13 +210,15 @@ export default function ReviewsShowcase() {
         </section>
       )}
 
-      <section className={`${styles.section} ${styles.reviewsSection}`}>
-        <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>LOVED BY CELEBRITIES</h2>
-          <p className={styles.sectionSubtitle}>Moments with names we admire</p>
-        </div>
-        <ImageReviewsMarquee />
-      </section>
+      {showImageReviews && (
+        <section className={`${styles.section} ${styles.reviewsSection}`}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>HAPPY CUSTOMERS</h2>
+            <p className={styles.sectionSubtitle}>Moments from our customers</p>
+          </div>
+          <ImageReviewsMarquee />
+        </section>
+      )}
     </>
   );
 }

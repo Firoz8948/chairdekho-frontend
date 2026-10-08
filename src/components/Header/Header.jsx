@@ -2,12 +2,15 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ShoppingCart, User, ArrowRight } from 'lucide-react';
+import { Menu, X, ShoppingCart, User, ArrowRight, ArrowUpRight, Phone } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import authService from '@/lib/services/auth';
-import { ASSETS } from '@/lib/assets';
+import { CONTACT } from '@/lib/seo';
+import Logo from '@/components/Logo/Logo';
+import SocialLinks from '@/components/SocialLinks/SocialLinks';
+import CategoryNav from '@/components/CategoryNav/CategoryNav';
+import { FEATURES } from '@/lib/features';
 import styles from './header.module.css';
 
 const DRAWER_ANIMATION_MS = 300;
@@ -58,16 +61,38 @@ export default function Header() {
   const navLinks = [
     { label: 'Home', href: '/' },
     { label: 'Shop', href: '/shop' },
-    { label: 'Watch & Shop', href: '/watch-and-shop' },
+    FEATURES.watchAndShop && { label: 'Watch & Shop', href: '/watch-and-shop' },
     { label: 'About', href: '/about' },
     { label: 'Contact', href: '/contact-us' },
-  ];
+  ].filter(Boolean);
 
-  const isHome = pathname === '/';
+  const phoneHref = `tel:+${CONTACT.whatsapp}`;
 
   return (
     <>
-      <header className={`${styles.header} ${isHome ? styles.headerHome : styles.headerSolid}`}>
+      <div className={styles.topBar}>
+        <div className={styles.topBarInner}>
+          <a
+            href={CONTACT.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.topBarMapLink}
+            title="View on Google Maps"
+          >
+            <span className={styles.topBarTagline}>Best Chairs in Vasai Virar</span>
+            <span className={styles.topBarMapBtn} aria-hidden="true">
+              <ArrowUpRight size={14} strokeWidth={2.25} />
+            </span>
+          </a>
+          <a href={phoneHref} className={styles.topBarPhone}>
+            <Phone size={13} strokeWidth={2} className={styles.topBarPhoneIcon} />
+            <span className={styles.topBarPhoneLabel}>For Bulk Order:</span>
+            <span className={styles.topBarPhoneNumber}>{CONTACT.phone}</span>
+          </a>
+        </div>
+      </div>
+
+      <header className={styles.header}>
         <div className={styles.inner}>
           
           {/* ================= LEFT SECTION ================= */}
@@ -82,64 +107,24 @@ export default function Header() {
               <Menu size={24} strokeWidth={1.5} />
             </button>
 
-            {/* Desktop Extreme Left: text_logo.svg */}
-            <Link href="/" className={styles.textLogoLink}>
-              <Image
-                src={ASSETS.textLogo}
-                alt="Lansdowne"
-                width={136}
-                height={46}
-                className={styles.textLogoImg}
-                priority
-                unoptimized
-              />
-            </Link>
-
-            {/* Desktop Nav Links (Home, Shop, Watch & Shop) centered between text logo and main logo */}
-            <nav className={`${styles.desktopNav} ${styles.leftNav}`}>
-              {navLinks.slice(0, 3).map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`${styles.navLink} ${pathname === link.href ? styles.navLinkActive : ''}`}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
+            <Logo />
           </div>
 
-          {/* ================= CENTER SECTION: main_logo.svg ================= */}
-          <div className={styles.centerSection}>
-            <Link href="/" className={styles.mainLogoLink} aria-label="Lansdowne Home">
-              <Image
-                src={ASSETS.mainLogo}
-                alt="Lansdowne Emblem"
-                width={64}
-                height={64}
-                className={styles.mainLogoImg}
-                priority
-                unoptimized
-              />
-            </Link>
-          </div>
+          {/* ================= CENTER SECTION: nav links ================= */}
+          <nav className={`${styles.centerSection} ${styles.desktopNav}`}>
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`${styles.navLink} ${pathname === link.href ? styles.navLinkActive : ''}`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
 
           {/* ================= RIGHT SECTION ================= */}
           <div className={styles.rightSection}>
-            {/* Desktop Nav Links (About, Contact, Admin) left-aligned towards center main logo */}
-            <nav className={`${styles.desktopNav} ${styles.rightNav}`}>
-              {navLinks.slice(3).map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`${styles.navLink} ${pathname === link.href ? styles.navLinkActive : ''}`}
-                >
-                  {link.label}
-                </Link>
-              ))}
-
-            </nav>
-
             {/* Icon Actions */}
             <div className={styles.iconActions}>
               <Link href="/cart" className={styles.iconBtn} aria-label="Shopping Cart">
@@ -159,6 +144,8 @@ export default function Header() {
         </div>
       </header>
 
+      <CategoryNav />
+
       {/* ================= MOBILE DRAWER MENU ================= */}
       {(mobileMenuOpen || mobileMenuClosing) && (
         <div
@@ -172,16 +159,7 @@ export default function Header() {
             aria-modal="true"
           >
             <div className={styles.drawerHeader}>
-              <Link href="/" className={styles.drawerLogoLink} onClick={closeMobileMenu}>
-                <Image
-                  src={ASSETS.textLogo}
-                  alt="Lansdowne"
-                  width={140}
-                  height={28}
-                  className={styles.textLogoImg}
-                  unoptimized
-                />
-              </Link>
+              <Logo size="sm" onClick={closeMobileMenu} />
               <button
                 type="button"
                 className={styles.drawerCloseBtn}
@@ -246,7 +224,11 @@ export default function Header() {
             </nav>
 
             <div className={styles.drawerFooter}>
-              <p>© {new Date().getFullYear()} Lansdowne. All rights reserved.</p>
+              <SocialLinks
+                items={['whatsapp', 'instagram', 'email', 'maps']}
+                className={styles.drawerSocial}
+              />
+              <p>© {new Date().getFullYear()} ChairDekho. All rights reserved.</p>
             </div>
           </div>
         </div>

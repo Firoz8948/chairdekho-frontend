@@ -17,8 +17,8 @@
   min-width: 18px;
   min-height: 18px;
   aspect-ratio: 1 / 1;
-  border-radius: 9999px !important;
-  border: 1.5px solid rgba(15, 23, 42, 0.22);
+  border-radius: 0 !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.22);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
   padding: 0;
   margin: 0;
@@ -47,7 +47,7 @@
 .swatchActive {
   box-shadow:
     0 0 0 2px #ffffff,
-    0 0 0 3.5px #0f172a;
+    0 0 0 3.5px #000000;
   cursor: default;
 }
 

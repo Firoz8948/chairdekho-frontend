@@ -126,7 +126,7 @@
 .itemNameLink {
   font-weight: 600;
   font-size: 0.92rem;
-  color: #0f172a;
+  color: #000000;
   line-height: 1.35;
 }
 
@@ -175,7 +175,7 @@
 .dlSendBtn {
   padding: 10px 16px;
   border: none;
-  background: #111827;
+  background: #000000;
   color: #fff;
   font-size: 0.88rem;
 }
@@ -186,15 +186,15 @@
 
 .dlSendBtnSmall {
   padding: 5px 10px;
-  border: 1px solid #111827;
+  border: 1px solid #000000;
   background: #fff;
-  color: #111827;
+  color: #000000;
   font-size: 0.75rem;
   white-space: nowrap;
 }
 
 .dlSendBtnSmall:hover:not(:disabled) {
-  background: #111827;
+  background: #000000;
   color: #fff;
 }
 
@@ -263,7 +263,7 @@
   padding: 7px 12px;
   border: 1px solid #cbd5e1;
   background: #fff;
-  color: #0f172a;
+  color: #000000;
   font-size: 0.8rem;
 }
 

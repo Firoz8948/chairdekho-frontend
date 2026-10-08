@@ -1,11 +1,12 @@
 import { SITE_URL, fetchApi } from '@/lib/seo';
+import { FEATURES } from '@/lib/features';
 
 export const revalidate = 3600;
 
 const STATIC_PAGES = [
   { path: '/', changeFrequency: 'daily', priority: 1 },
   { path: '/shop', changeFrequency: 'daily', priority: 0.9 },
-  { path: '/watch-and-shop', changeFrequency: 'weekly', priority: 0.6 },
+  FEATURES.watchAndShop && { path: '/watch-and-shop', changeFrequency: 'weekly', priority: 0.6 },
   { path: '/about', changeFrequency: 'monthly', priority: 0.5 },
   { path: '/faqs', changeFrequency: 'monthly', priority: 0.5 },
   { path: '/contact-us', changeFrequency: 'yearly', priority: 0.4 },
@@ -13,7 +14,7 @@ const STATIC_PAGES = [
   { path: '/policy/refund-policy', changeFrequency: 'yearly', priority: 0.3 },
   { path: '/policy/privacy-policy', changeFrequency: 'yearly', priority: 0.2 },
   { path: '/policy/terms-and-conditions', changeFrequency: 'yearly', priority: 0.2 },
-];
+].filter(Boolean);
 
 const MAX_PRODUCT_PAGES = 50;
 

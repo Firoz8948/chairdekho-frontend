@@ -94,10 +94,10 @@ export default function ShippingPage() {
       throw new Error('Zone name is required');
     }
     if (Number.isNaN(prepaid) || prepaid < 0) {
-      throw new Error('Enter a valid prepaid rate');
+      throw new Error('Enter a valid prepaid shipping charge');
     }
     if (Number.isNaN(cod) || cod < 0) {
-      throw new Error('Enter a valid COD rate');
+      throw new Error('Enter a valid COD shipping charge');
     }
     if (!form.is_all_india && form.states.length === 0) {
       throw new Error('Select at least one state, or enable All over India');
@@ -182,7 +182,8 @@ export default function ShippingPage() {
         </h2>
         <p className={styles.formHint}>
           Zones match by state at checkout. Use &quot;All over India&quot; as a fallback when no
-          state-specific zone matches.
+          state-specific zone matches. The prepaid and COD amounts are the shipping charge the
+          customer pays for that payment method; enter 0 for free shipping.
         </p>
 
         <div className={productStyles.formRow}>
@@ -237,7 +238,7 @@ export default function ShippingPage() {
 
         <div className={productStyles.formRow} style={{ marginTop: 16 }}>
           <div className={productStyles.formGroup}>
-            <label className={productStyles.formLabel}>Prepaid rate (₹)</label>
+            <label className={productStyles.formLabel}>Prepaid shipping charge (₹)</label>
             <input
               className={productStyles.formInput}
               type="number"
@@ -249,7 +250,7 @@ export default function ShippingPage() {
             />
           </div>
           <div className={productStyles.formGroup}>
-            <label className={productStyles.formLabel}>COD rate (₹)</label>
+            <label className={productStyles.formLabel}>COD shipping charge (₹)</label>
             <input
               className={productStyles.formInput}
               type="number"

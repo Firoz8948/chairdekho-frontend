@@ -35,7 +35,7 @@ export default function AdminLoginPage() {
     <div className={styles.container}>
       <div className={styles.card}>
         <div className={styles.header}>
-          <h1 className={styles.brand}>Lansdowne Admin</h1>
+          <h1 className={styles.brand}>ChairDekho Admin</h1>
           <p className={styles.subtitle}>Sign in to manage your store</p>
         </div>
 

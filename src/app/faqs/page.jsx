@@ -6,6 +6,7 @@ import styles from './faqs.module.css';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import PageHeroBanner from '@/components/PageHeroBanner/PageHeroBanner';
+import { CONTACT } from '@/lib/seo';
 
 const faqGroups = [
   {
@@ -29,7 +30,26 @@ const faqGroups = [
       },
       {
         q: 'Is there a shipping charge?',
-        a: 'Shipping is free on all prepaid orders, with no minimum order value. Cash on Delivery orders carry a ₹99 COD charge, shown at checkout.',
+        a: 'No. Shipping is free on every order, prepaid or Cash on Delivery, with no minimum order value.',
+      },
+      {
+        q: 'Where should I come to buy chairs offline?',
+        a: (
+          <>
+            Come to our shop at {CONTACT.address}.{' '}
+            <a href={CONTACT.mapsUrl} target="_blank" rel="noopener noreferrer" className={styles.faqLink}>
+              Open in Google Maps
+            </a>
+            <br />
+            Timings: 10 AM to 7 PM.
+            <br />
+            You can also call us on{' '}
+            <a href={`tel:+${CONTACT.whatsapp}`} className={styles.faqLink}>
+              {CONTACT.phone}
+            </a>
+            .
+          </>
+        ),
       },
     ],
   },
@@ -42,7 +62,7 @@ const faqGroups = [
       },
       {
         q: 'Is Cash on Delivery (COD) available?',
-        a: 'Yes, COD is available on eligible orders across most pin codes in India. A ₹99 COD charge applies to Cash on Delivery orders. COD availability is displayed at checkout.',
+        a: 'Yes, COD is available on eligible orders across most pin codes in India. There is no extra charge for Cash on Delivery. COD availability is displayed at checkout.',
       },
       {
         q: 'Are my payment details secure?',
@@ -55,11 +75,11 @@ const faqGroups = [
     items: [
       {
         q: 'What is your return policy?',
-        a: 'You can request a return within 7 days of delivery. The wallet, bag or belt must be unused, free of marks, scratches or stains, and returned in its original packaging with all tags intact. Personalised items and products bought in a clearance or final sale cannot be returned. Received a damaged or wrong item? Contact us within 48 hours of delivery for a free replacement or full refund.',
+        a: 'You can request a return within 7 days of delivery. The chair must be unused, free of scratches, cracks or stains, and returned in its original packaging. Products bought in a clearance or final sale cannot be returned. Received a damaged or wrong item? Contact us within 48 hours of delivery for a free replacement or full refund.',
       },
       {
         q: 'How do I initiate a return?',
-        a: 'Contact our support team at lansdowneleather1@gmail.com or call +91 89795 43500 with your order number. Once approved, our courier partner will schedule a pickup from your delivery address within 2–3 business days.',
+        a: `Contact our support team at ${CONTACT.email} or call ${CONTACT.phone} with your order number. Once approved, we will schedule a pickup from your delivery address within 2–3 business days.`,
       },
       {
         q: 'When will I receive my refund?',
@@ -67,24 +87,32 @@ const faqGroups = [
       },
       {
         q: 'Can I exchange a product instead of returning it?',
-        a: 'Yes. Within the 7-day return window you can exchange for a different colour of the same product, or a different size for belts, subject to stock availability. Contact our support team to start an exchange. If the variant you want is unavailable, we will refund you instead.',
+        a: 'Yes. Within the 7-day return window you can exchange for a different colour or model of chair, subject to stock availability. Contact our support team to start an exchange. If the chair you want is unavailable, we will refund you instead.',
       },
     ],
   },
   {
-    group: 'Products & Care',
+    group: 'Chairs & Care',
     items: [
       {
-        q: 'Are your products genuine and original?',
-        a: 'Yes, every product sold on Lansdowne is 100% authentic and sourced directly from verified manufacturers. We stand behind the quality of every item in our collection.',
+        q: 'What types of chairs do you sell?',
+        a: 'All types of chairs – plastic chairs, arm chairs, armless chairs, dining chairs, garden and outdoor chairs, office chairs, kids chairs and stools – at affordable prices.',
       },
       {
-        q: 'How should I care for my products?',
-        a: 'Care instructions are provided on each product page and on the label inside the product. As a general guideline, we recommend gentle machine wash or hand wash in cold water for apparel, and wiping with a soft cloth for accessories.',
+        q: 'Do you deliver in Vasai, Virar and Nalasopara?',
+        a: 'Yes. We are based in Nalasopara West and deliver quickly across Vasai, Virar, Nalasopara, Naigaon and nearby areas. We also ship to other serviceable pin codes across India.',
       },
       {
-        q: 'A product I want is out of stock. Will it be restocked?',
-        a: 'Popular items are restocked regularly. You can use the "Notify Me" feature on the product page to receive an alert as soon as the item is back in stock.',
+        q: 'Do you take bulk orders for shops, offices or events?',
+        a: `Yes. For bulk quantities of chairs for shops, offices, restaurants, function halls or events, call or WhatsApp us on ${CONTACT.phone} for special rates.`,
+      },
+      {
+        q: 'Are your chairs good quality?',
+        a: 'Yes. Every chair sold on ChairDekho is checked for strength, finish and comfort, and sourced directly from trusted manufacturers. We stand behind the quality of every chair we sell.',
+      },
+      {
+        q: 'How should I care for my chairs?',
+        a: 'Wipe plastic chairs with a damp cloth and mild soap, and avoid sharp objects and long exposure to strong heat. For office chairs, check the screws and wheels from time to time. Care instructions are also provided on each product page.',
       },
     ],
   },

@@ -9,7 +9,7 @@
   flex: 1;
   max-width: var(--container-md);
   margin: 0 auto;
-  padding: clamp(48px, 6vw, 80px) var(--gutter-inline);
+  padding: clamp(var(--section-space-mobile), 6vw, 80px) var(--gutter-inline);
   width: 100%;
 }
 

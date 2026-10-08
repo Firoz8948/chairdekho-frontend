@@ -1,7 +1,7 @@
 :root {
   /* Brand Colors */
-  --primary: #0f172a;
-  --primary-hover: #1e293b;
+  --primary: #000000;
+  --primary-hover: #222222;
   --primary-light: #f8fafc;
   --accent: #5c3d2e;
   --accent-hover: #4a2c17;
@@ -19,10 +19,10 @@
   --border: #e2e8f0;
   --border-light: #f1f5f9;
   --border-hover: #cbd5e1;
-  --border-focus: #0f172a;
+  --border-focus: #000000;
   
   /* Typography */
-  --text-main: #0f172a;
+  --text-main: #000000;
   --text-muted: #64748b;
   --text-subtle: #94a3b8;
   --text-inverse: #ffffff;
@@ -42,8 +42,8 @@
   /* Shadows */
   --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-sm: 0 2px 4px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
-  --shadow-md: 0 6px 12px -2px rgba(15, 23, 42, 0.08), 0 3px 6px -3px rgba(15, 23, 42, 0.04);
-  --shadow-lg: 0 16px 32px -4px rgba(15, 23, 42, 0.1), 0 6px 12px -6px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 6px 12px -2px rgba(0, 0, 0, 0.08), 0 3px 6px -3px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 16px 32px -4px rgba(0, 0, 0, 0.1), 0 6px 12px -6px rgba(0, 0, 0, 0.05);
   --shadow-glow: 0 0 25px rgba(217, 119, 6, 0.15);
   
   /* Standard Responsive Container Boundaries */
@@ -57,16 +57,22 @@
 
   /* Fluid Spacing Units (scales smoothly across laptop vs big screens) */
   --gutter-inline: clamp(16px, 3vw, 40px);
-  --section-space-y: clamp(48px, 6vw, 90px);
+  --section-space-mobile: 56px;
+  --section-space-y: clamp(var(--section-space-mobile), 6vw, 90px);
+  /* Home page sections alternate white / this colour (banner is white) */
+  --section-alt-bg: #f4f6fa;
   
   /* Typography Scale — fluid on desktop, fixed on mobile */
   --font-family-sans: var(--font-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-family-heading: var(--font-heading), 'Arapey', Georgia, serif;
+  /* Heading font: var(--font-poppins) | var(--font-montserrat) | var(--font-outfit)
+     | var(--font-playfair) | var(--font-dm-serif) | var(--font-sans). Options are registered in src/lib/fonts.js */
+  --font-family-heading: var(--font-poppins), system-ui, sans-serif;
   --text-display: clamp(2.2rem, 3.2vw + 0.5rem, 3.6rem);
   --text-h1: clamp(2.25rem, 3vw, 3rem);
   --text-h2: clamp(1.65rem, 2.3vw, 2.25rem);
   --text-h3: clamp(1.05rem, 1.15vw, 1.2rem);
   --text-body: 0.95rem;
+  --text-subtitle: clamp(0.85rem, 1vw, 0.95rem);
   --text-micro: 0.75rem;
 
   /* Transitions */
@@ -78,12 +84,14 @@
 /* ================= MOBILE TYPOGRAPHY OVERRIDE ================= */
 @media (max-width: 768px) {
   :root {
-    --text-display: 28px;
-    --text-h1: 28px;
+    --text-display: 24px;
+    --text-h1: 24px;
     --text-h2: 22px;
     --text-h3: 16px;
-    --text-body: 15px;
+    --text-body: 14px;
+    --text-subtitle: 14px;
     --text-micro: 12px;
+    --text-logo: 24px;
   }
 
   /* iOS Safari: prevent auto-zoom on input focus */

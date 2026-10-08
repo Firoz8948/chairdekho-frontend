@@ -14,11 +14,13 @@
 .storySection {
   max-width: var(--container-2xl);
   margin: 0 auto;
-  padding: clamp(48px, 6vw, 80px) var(--gutter-inline);
+  padding: clamp(var(--section-space-mobile), 6vw, 80px) var(--gutter-inline);
   position: relative;
 }
 
 .sectionHeader {
+  align-items: center;
+  text-align: center;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -35,20 +37,12 @@
 }
 
 .sectionSubtitle {
-  font-size: clamp(0.85rem, 1vw, 0.95rem);
+  font-size: var(--text-subtitle);
   color: var(--text-muted);
   line-height: 1.3;
   margin: 0;
   font-weight: 400;
   letter-spacing: 0.01em;
-}
-
-.sectionTitleOnDark {
-  color: #ffffff;
-}
-
-.sectionSubtitleOnDark {
-  color: #94a3b8;
 }
 
 .storyContent {
@@ -57,6 +51,28 @@
   border-radius: var(--radius-lg);
   padding: clamp(28px, 4vw, 48px);
   box-shadow: var(--shadow-sm);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 48px);
+}
+
+.storyMedia {
+  overflow: hidden;
+  border-radius: var(--radius-md, 8px);
+  background: #14120e;
+}
+
+.storyImage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 900px) {
+  .storyContent {
+    grid-template-columns: 1fr;
+  }
 }
 
 .paragraph {
@@ -70,152 +86,175 @@
   margin-bottom: 0;
 }
 
-/* ── Values Section ── */
-.valuesSection {
+/* ── Values Section (reuses the home page trust cards) ── */
+.valuesWrap > section {
+  padding-top: 0;
+  padding-bottom: clamp(var(--section-space-mobile), 6vw, 80px);
+}
+
+/* ── Why ChairDekho Section ── */
+.whySection {
   max-width: var(--container-2xl);
   margin: 0 auto;
-  padding: 0 var(--gutter-inline) clamp(48px, 6vw, 80px);
+  padding: 0 var(--gutter-inline) clamp(var(--section-space-mobile), 6vw, 80px);
 }
 
-.valuesGrid {
+.whyCard {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-  gap: clamp(16px, 2vw, 24px);
-}
-
-.valueCard {
-  background: var(--surface);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: clamp(24px, 3vw, 32px);
-  transition: all var(--transition-normal);
-}
-
-.valueCard:hover {
-  border-color: var(--border-hover);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: #ffffff;
   box-shadow: var(--shadow-md);
-  transform: translateY(-3px);
 }
 
-.valueIcon {
-  width: 48px;
-  height: 48px;
+.whyIntro {
+  background: #000000;
+  color: #ffffff;
+  padding: clamp(32px, 4vw, 56px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.whyTitle {
+  font-size: var(--text-h2);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  color: #ffffff;
+  margin: 0;
+}
+
+.whySubtitle {
+  font-size: var(--text-subtitle);
+  color: #c4a484;
+  margin: 0;
+}
+
+.whyLead {
+  margin: 10px 0 0;
+  font-size: var(--text-body);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 40ch;
+}
+
+.whyStats {
+  list-style: none;
+  margin: 22px 0 0;
+  padding: 22px 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.whyStat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.whyStatValue {
+  font-family: var(--font-family-heading);
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1;
+  color: #ffffff;
+}
+
+.whyStatLabel {
+  font-size: var(--text-micro);
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.02em;
+}
+
+.whyGrid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.whyItem {
+  padding: clamp(24px, 3vw, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 1px solid var(--border);
+  transition: background-color 0.25s ease;
+}
+
+.whyItem:nth-child(odd) {
+  border-right: 1px solid var(--border);
+}
+
+.whyItem:nth-last-child(-n + 2) {
+  border-bottom: none;
+}
+
+.whyItem:hover {
+  background: #faf7f4;
+}
+
+.whyIcon {
+  width: 46px;
+  height: 46px;
+  margin-bottom: 6px;
   border-radius: var(--radius-md);
   background: var(--accent-subtle);
   color: var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 18px;
-}
-
-.valueTitle {
-  font-size: var(--text-h3);
-  font-weight: 700;
-  color: var(--text-main);
-  margin-bottom: 8px;
-  font-family: var(--font-family-sans);
-}
-
-.valueDesc {
-  font-size: var(--text-body);
-  color: var(--text-muted);
-  line-height: 1.65;
-}
-
-/* ── Why Lansdowne Section ── */
-.whySection {
-  max-width: var(--container-2xl);
-  margin: 0 auto;
-  padding: 0 var(--gutter-inline) clamp(48px, 6vw, 80px);
-}
-
-.whyCard {
-  background: #0f172a;
-  color: #ffffff;
-  border-radius: var(--radius-xl);
-  padding: clamp(36px, 5vw, 56px);
-  box-shadow: var(--shadow-lg);
-}
-
-.whyGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(20px, 3vw, 32px);
-}
-
-.whyItem {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-}
-
-.whyNumber {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #5c3d2e;
-  letter-spacing: 0.08em;
-  flex-shrink: 0;
-  margin-top: 2px;
 }
 
 .whyItemTitle {
-  font-size: var(--text-h3);
-  font-weight: 600;
-  color: #ffffff;
-  margin-bottom: 6px;
   font-family: var(--font-family-sans);
+  font-size: var(--text-h3);
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
 }
 
 .whyItemDesc {
+  margin: 0;
   font-size: var(--text-body);
-  color: #94a3b8;
   line-height: 1.65;
+  color: var(--text-muted);
 }
 
 /* ── Responsive ── */
+@media (max-width: 1024px) {
+  .whyCard {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 768px) {
+  .whyCard {
+    border-radius: var(--radius-lg);
+  }
+
+  .whyIntro {
+    text-align: center;
+    align-items: center;
+  }
+
   .whyGrid {
     grid-template-columns: 1fr;
   }
 
-  .valuesSection {
-    padding-left: 0;
-    padding-right: 0;
+  .whyItem,
+  .whyItem:nth-child(odd) {
+    border-right: none;
   }
 
-  .valuesSection .sectionHeader {
-    padding-left: var(--gutter-inline);
-    padding-right: var(--gutter-inline);
-  }
-
-  .valuesGrid {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 12px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-x: contain;
-    padding: 4px var(--gutter-inline) 12px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  .valuesGrid::-webkit-scrollbar {
-    display: none;
-  }
-
-  .valueCard {
-    flex: 0 0 min(78vw, 280px);
-    width: min(78vw, 280px);
-    max-width: min(78vw, 280px);
-    scroll-snap-align: start;
-    transform: none;
-  }
-
-  .valueCard:hover {
-    transform: none;
+  .whyItem:nth-last-child(2) {
+    border-bottom: 1px solid var(--border);
   }
 }

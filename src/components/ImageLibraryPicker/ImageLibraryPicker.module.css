@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0;
   z-index: 80;
-  background: rgba(15, 23, 42, 0.45);
+  background: rgba(0, 0, 0, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,7 +17,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.25);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
 }
 
 .header,
@@ -39,7 +39,7 @@
   margin: 0;
   font-size: 1rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #000000;
 }
 
 .closeBtn,
@@ -56,8 +56,8 @@
 }
 
 .primaryBtn {
-  background: #0f172a;
-  border-color: #0f172a;
+  background: #000000;
+  border-color: #000000;
   color: #fff;
 }
 

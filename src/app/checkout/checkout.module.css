@@ -19,6 +19,8 @@
 }
 
 .sectionHeader {
+  align-items: center;
+  text-align: center;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -35,7 +37,7 @@
 }
 
 .sectionSubtitle {
-  font-size: clamp(0.85rem, 1vw, 0.95rem);
+  font-size: var(--text-subtitle);
   color: var(--text-muted);
   line-height: 1.3;
   margin: 0;

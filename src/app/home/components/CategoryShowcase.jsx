@@ -1,11 +1,22 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Armchair, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import productService from '@/lib/services/products';
-import ShopNowButton from '@/components/ShopNowButton';
 import styles from '../home.module.css';
+import railStyles from './categoryRail.module.css';
+
+const CIRCLE_COLORS = [
+  '#fdecec', // rose
+  '#e6f2fc', // sky
+  '#e8f6ec', // mint
+  '#fff4d9', // butter
+  '#efe9fb', // lavender
+  '#e3f6f4', // aqua
+  '#fdeee4', // peach
+  '#edf0f5', // mist
+];
 
 const resolveImageUrl = (url) => {
   if (!url) return null;
@@ -17,9 +28,9 @@ const resolveImageUrl = (url) => {
 export default function CategoryShowcase() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [activeSlide, setActiveSlide] = useState(0);
-  const [touchStartX, setTouchStartX] = useState(null);
-  const [touchEndX, setTouchEndX] = useState(null);
+  const [pageCount, setPageCount] = useState(1);
+  const [page, setPage] = useState(0);
+  const railRef = useRef(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -27,9 +38,7 @@ export default function CategoryShowcase() {
       try {
         const data = await productService.getCategories();
         if (isMounted && Array.isArray(data)) {
-          // Filter active categories and exclude internal reels category
-          const curated = data.filter((cat) => cat.is_active && !cat.is_reels);
-          setCategories(curated);
+          setCategories(data.filter((cat) => cat.is_active && !cat.is_reels));
         }
       } catch (err) {
         console.error('Failed to load categories:', err);
@@ -44,151 +53,119 @@ export default function CategoryShowcase() {
     };
   }, []);
 
-  const minSwipeDistance = 40;
+  const updatePaging = useCallback(() => {
+    const rail = railRef.current;
+    if (!rail) return;
+    const maxScroll = rail.scrollWidth - rail.clientWidth;
+    const pages = maxScroll > 4 ? Math.ceil(rail.scrollWidth / rail.clientWidth) : 1;
+    setPageCount(pages);
+    setPage(pages > 1 ? Math.round((rail.scrollLeft / maxScroll) * (pages - 1)) : 0);
+  }, []);
 
-  const onTouchStart = (e) => {
-    setTouchEndX(null);
-    setTouchStartX(e.targetTouches[0].clientX);
-  };
+  useEffect(() => {
+    const rail = railRef.current;
+    if (!rail) return undefined;
+    updatePaging();
+    rail.addEventListener('scroll', updatePaging, { passive: true });
+    const observer = new ResizeObserver(updatePaging);
+    observer.observe(rail);
+    return () => {
+      rail.removeEventListener('scroll', updatePaging);
+      observer.disconnect();
+    };
+  }, [updatePaging, categories, loading]);
 
-  const onTouchMove = (e) => {
-    setTouchEndX(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEnd = () => {
-    if (touchStartX === null || touchEndX === null) return;
-    const distance = touchStartX - touchEndX;
-    if (distance > minSwipeDistance) {
-      // Swiped left: 1st goes left, 2nd comes right to left, etc.
-      setActiveSlide((prev) => (prev + 1) % categories.length);
-    } else if (distance < -minSwipeDistance) {
-      // Swiped right: goes previous
-      setActiveSlide((prev) => (prev - 1 + categories.length) % categories.length);
-    }
-  };
-
-  const handlePrev = (e) => {
-    e.stopPropagation();
-    setActiveSlide((prev) => (prev - 1 + categories.length) % categories.length);
-  };
-
-  const handleNext = (e) => {
-    e.stopPropagation();
-    setActiveSlide((prev) => (prev + 1) % categories.length);
+  const goToPage = (next) => {
+    const rail = railRef.current;
+    if (!rail || pageCount < 2) return;
+    const target = ((next % pageCount) + pageCount) % pageCount;
+    const maxScroll = rail.scrollWidth - rail.clientWidth;
+    rail.scrollTo({ left: (maxScroll * target) / (pageCount - 1), behavior: 'smooth' });
   };
 
   return (
     <section className={`${styles.section} ${styles.categorySection}`}>
       <div className={styles.sectionHeader}>
-        <h2 className={styles.sectionTitle}>CURATED COLLECTIONS</h2>
+        <h2 className={styles.sectionTitle}>SHOP CHAIRS BY TYPE</h2>
         <div className={styles.sectionTitleRow}>
-          <p className={styles.sectionSubtitle}>Shop by category</p>
+          <p className={styles.sectionSubtitle}>The right chair for every space</p>
           <Link href="/shop" className={styles.sectionLink}>
             View All <ArrowRight size={16} />
           </Link>
         </div>
       </div>
 
-      <div
-        className={styles.categoryContainer}
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
-      >
-        <div
-          className={styles.categoryGrid}
-          style={{ '--active-slide': activeSlide }}
-        >
-          {loading ? (
-            // Skeleton loaders while fetching from db
-            [1, 2, 3].map((n) => (
-              <div key={n} className={styles.categorySlide}>
-                <div
-                  className={`${styles.categoryCard} ${styles.categorySkeleton}`}
-                />
-              </div>
-            ))
-          ) : categories.length > 0 ? (
-            categories.map((cat, idx) => {
-              const resolvedImg = resolveImageUrl(cat.image_url);
-
-              return (
-                <div
-                  key={cat.id}
-                  className={`${styles.categorySlide} ${activeSlide === idx ? styles.activeSlide : ''}`}
-                >
-                  <Link
-                    href={`/shop?category=${encodeURIComponent(cat.slug)}`}
-                    className={styles.categoryCard}
-                  >
-                    {resolvedImg && (
-                      <>
-                        <img
-                          src={resolvedImg}
-                          alt={cat.name}
-                          className={styles.categoryCardImg}
-                        />
-                        <div className={styles.categoryCardOverlay} />
-                      </>
-                    )}
-
-                    <div className={styles.categoryCardTopContent}>
-                      <div className={styles.categoryTopLabel}>
-                        <span className={styles.categoryTopLabelLine} />
-                        <span className={styles.categoryTopLabelText}>Premium</span>
-                      </div>
-                      <h3 className={styles.categoryName}>{cat.name}</h3>
-                      {cat.description && (
-                        <p className={styles.categoryDesc}>{cat.description}</p>
-                      )}
-                    </div>
-
-                    <div className={styles.categoryActionWrapper}>
-                      <ShopNowButton as="span" size="sm" />
-                    </div>
-                  </Link>
-                </div>
-              );
-            })
-          ) : (
-            <div className={styles.categoryEmpty}>
-              <p>No categories published yet. Add categories from the Admin Portal.</p>
-            </div>
-          )}
+      {!loading && categories.length === 0 ? (
+        <div className={styles.categoryEmpty}>
+          <p>No categories published yet. Add categories from the Admin Portal.</p>
         </div>
-      </div>
-
-      {!loading && categories.length > 1 && (
-        <div className={styles.categoryPagination}>
-          <button
-            type="button"
-            className={styles.paginationArrowBtn}
-            onClick={handlePrev}
-            aria-label="Previous Category"
-          >
-            <ChevronLeft size={18} />
-          </button>
-
-          <div className={styles.categoryCarouselDots}>
-            {categories.map((cat, idx) => (
-              <button
-                key={cat.id || idx}
-                type="button"
-                className={`${styles.categoryCarouselDot} ${activeSlide === idx ? styles.activeDot : ''}`}
-                onClick={() => setActiveSlide(idx)}
-                aria-label={`Go to category ${idx + 1}`}
-              />
-            ))}
+      ) : (
+        <div className={railStyles.railWrap}>
+          <div ref={railRef} className={railStyles.rail}>
+            {loading
+              ? Array.from({ length: 6 }, (_, n) => (
+                  <div key={n} className={railStyles.item} aria-hidden="true">
+                    <span className={`${railStyles.circle} ${railStyles.skeleton}`} />
+                    <span className={railStyles.skeletonText} />
+                  </div>
+                ))
+              : categories.map((cat, idx) => {
+                  const img = resolveImageUrl(cat.image_url);
+                  return (
+                    <Link
+                      key={cat.id}
+                      href={`/shop?category=${encodeURIComponent(cat.slug)}`}
+                      className={railStyles.item}
+                    >
+                      <span
+                        className={railStyles.circle}
+                        style={{ '--circle-bg': CIRCLE_COLORS[idx % CIRCLE_COLORS.length] }}
+                      >
+                        {img ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={img} alt="" className={railStyles.image} loading="lazy" />
+                        ) : (
+                          <Armchair className={railStyles.fallbackIcon} strokeWidth={1.25} />
+                        )}
+                      </span>
+                      <span className={railStyles.name}>{cat.name}</span>
+                    </Link>
+                  );
+                })}
           </div>
 
-          <button
-            type="button"
-            className={styles.paginationArrowBtn}
-            onClick={handleNext}
-            aria-label="Next Category"
-          >
-            <ChevronRight size={18} />
-          </button>
+          {pageCount > 1 && (
+            <div className={railStyles.controls}>
+              <button
+                type="button"
+                className={railStyles.arrow}
+                onClick={() => goToPage(page - 1)}
+                aria-label="Previous categories"
+              >
+                <ChevronLeft size={18} />
+              </button>
+              <div className={railStyles.dots}>
+                {Array.from({ length: pageCount }, (_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    className={`${railStyles.dot} ${i === page ? railStyles.dotActive : ''}`}
+                    onClick={() => goToPage(i)}
+                    aria-label={`Go to category page ${i + 1}`}
+                    aria-current={i === page}
+                  />
+                ))}
+              </div>
+              <button
+                type="button"
+                className={railStyles.arrow}
+                onClick={() => goToPage(page + 1)}
+                aria-label="Next categories"
+              >
+                <ChevronRight size={18} />
+              </button>
+            </div>
+          )}
         </div>
       )}
     </section>

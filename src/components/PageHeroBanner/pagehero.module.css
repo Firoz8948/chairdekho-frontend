@@ -1,50 +1,57 @@
 .heroBanner {
-  width: 100%;
-  color: #ffffff;
-  padding: clamp(80px, 10vw, 120px) var(--gutter-inline) clamp(48px, 6vw, 72px);
-  text-align: center;
+  --hero-h: clamp(260px, 25vw, 380px);
+  --hero-img-gap: 20px;
   position: relative;
+  width: 100%;
+  height: var(--hero-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  background: #0f172a;
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+  color: #000000;
+}
+
+/* Square images span the full banner height, so their width equals --hero-h. */
+.heroImg {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.heroImgLeft {
+  left: var(--hero-img-gap);
+}
+
+.heroImgRight {
+  right: var(--hero-img-gap);
 }
 
 .heroBg {
-  position: absolute;
-  inset: 0;
-  background-image: url('https://lansdowne-cdn.b-cdn.net/Basic_Assets/pages_banner.png');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  z-index: 0;
-}
-
-.heroOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(15, 23, 42, 0.72) 0%,
-    rgba(15, 23, 42, 0.78) 50%,
-    rgba(15, 23, 42, 0.85) 100%
-  );
-  z-index: 1;
-  pointer-events: none;
+  display: none;
 }
 
 .heroInner {
   position: relative;
-  z-index: 2;
-  max-width: var(--container-lg);
-  margin: 0 auto;
+  z-index: 1;
+  width: 100%;
+  max-width: calc(100% - 2 * (var(--hero-h) + var(--hero-img-gap)));
+  padding: 0 clamp(12px, 2vw, 32px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0;
 }
 
 .backLink {
   font-size: var(--text-body);
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--text-muted);
   text-decoration: none;
   margin-bottom: 20px;
   transition: color var(--transition-fast);
@@ -52,13 +59,13 @@
 }
 
 .backLink:hover {
-  color: #ffffff;
+  color: #000000;
 }
 
 .accentLine {
   width: 48px;
   height: 2px;
-  background: #c4a484;
+  background: var(--accent);
   margin-bottom: 24px;
 }
 
@@ -66,28 +73,89 @@
   font-family: var(--font-family-heading);
   font-size: var(--text-h1);
   font-weight: 400;
-  color: #ffffff;
+  color: #000000;
   letter-spacing: -0.01em;
   line-height: 1.2;
   margin: 0 0 16px;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
 }
 
 .heroSubtitle {
   font-size: var(--text-body);
-  color: rgba(255, 255, 255, 0.78);
+  color: #475569;
   max-width: 600px;
   line-height: 1.65;
   margin: 0;
 }
 
-@media (max-width: 768px) {
+/* Too narrow for images beside the text: stack the title on top, the two images side by side below. */
+@media (max-width: 900px) {
   .heroBanner {
-    padding: clamp(72px, 8vw, 96px) var(--gutter-inline) clamp(36px, 5vw, 48px);
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: clamp(36px, 8vw, 52px);
+  }
+
+  .heroInner {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    max-width: none;
+    padding: 0 var(--gutter-inline) 20px;
+  }
+
+  .heroImg {
+    position: static;
+    grid-row: 2;
+    width: 100%;
+    height: auto;
+  }
+
+  .heroImgLeft {
+    grid-column: 1;
+    width: calc(100% - var(--hero-img-gap));
+    margin-left: var(--hero-img-gap);
+  }
+
+  .heroImgRight {
+    grid-column: 2;
+    width: calc(100% - var(--hero-img-gap));
+    margin-right: var(--hero-img-gap);
   }
 
   .accentLine {
     width: 36px;
     margin-bottom: 18px;
+  }
+}
+
+/* Mobile: blurred photo behind the text instead of the two chair cut-outs.
+   The chair images stay lazy so phones never download them while hidden. */
+@media (max-width: 768px) {
+  .heroBanner {
+    display: flex;
+    padding: clamp(44px, 12vw, 64px) 0;
+  }
+
+  .heroBg {
+    display: block;
+    position: absolute;
+    inset: -12px;
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)),
+      url('/images/hero/chairhero-mobile.webp') center bottom / 100% auto no-repeat #ffffff;
+    filter: blur(4px);
+    pointer-events: none;
+  }
+
+  .heroImg {
+    display: none;
+  }
+
+  .heroInner {
+    padding: 0 var(--gutter-inline);
+  }
+
+  .heroSubtitle {
+    color: #1f2937;
   }
 }

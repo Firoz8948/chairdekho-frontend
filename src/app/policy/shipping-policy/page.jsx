@@ -5,9 +5,9 @@ import PageHeroBanner from '@/components/PageHeroBanner/PageHeroBanner';
 import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
-  title: 'Shipping Policy | Lansdowne Leather',
+  title: 'Shipping Policy | ChairDekho',
   description:
-    'Everything you need to know about Lansdowne Leather shipping timelines, charges, tracking, and delivery coverage across India.',
+    'Everything you need to know about ChairDekho shipping timelines, charges, tracking, and delivery coverage across India.',
   path: '/policy/shipping-policy',
 });
 
@@ -68,22 +68,20 @@ export default function ShippingPolicyPage() {
 
           <h2 className={styles.sectionHeading}>3. Shipping Charges</h2>
           <p className={styles.paragraph}>
-            We strive to keep shipping as affordable as possible:
+            Shipping is completely free on every ChairDekho order:
           </p>
           <ul className={styles.list}>
-            <li><strong>Free shipping</strong> on all prepaid orders (UPI, cards, net banking), with no minimum order value</li>
-            <li><strong>₹99 Cash on Delivery charge</strong> for COD orders</li>
+            <li><strong>Free shipping</strong> on all prepaid orders (UPI, cards, net banking)</li>
+            <li><strong>Free shipping</strong> on Cash on Delivery orders, with no extra COD charge</li>
+            <li><strong>No minimum order value</strong> to qualify for free shipping</li>
           </ul>
           <p className={styles.paragraph}>
-            The applicable charge is always shown at checkout before you place your order.
-          </p>
-          <p className={styles.paragraph}>
-            Promotional free shipping offers may be available from time to time and will be communicated on our website and social media channels.
+            You will not be charged anything for delivery at checkout.
           </p>
 
           <h2 className={styles.sectionHeading}>4. Order Tracking</h2>
           <p className={styles.paragraph}>
-            Once your order is dispatched, you will receive a tracking link via SMS and email. You can use this link to monitor your shipment in real time through our courier partner's website. If you do not receive tracking information within 48 hours of dispatch, please contact our support team at <strong>lansdowneleather1@gmail.com</strong>.
+            Once your order is dispatched, you will receive a tracking link via SMS and email. You can use this link to monitor your shipment in real time through our courier partner's website. If you do not receive tracking information within 48 hours of dispatch, please contact our support team at <strong>brjangu29@gmail.com</strong>.
           </p>
 
           <h2 className={styles.sectionHeading}>5. Undeliverable Orders</h2>
@@ -105,8 +103,8 @@ export default function ShippingPolicyPage() {
             For any shipping-related queries or concerns, please reach out to us:
           </p>
           <ul className={styles.list}>
-            <li><strong>Email:</strong> lansdowneleather1@gmail.com</li>
-            <li><strong>Phone:</strong> +91 89795 43500</li>
+            <li><strong>Email:</strong> brjangu29@gmail.com</li>
+            <li><strong>Phone:</strong> +91 96991 64131</li>
             <li><strong>Hours:</strong> Mon – Sat, 10:00 AM – 7:00 PM IST</li>
           </ul>
         </div>

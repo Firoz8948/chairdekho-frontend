@@ -1,9 +1,8 @@
 import './globals.css';
-import { Plus_Jakarta_Sans, Arapey } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
+import { fontSans, fontVariables } from '@/lib/fonts';
 import Providers from '@/components/Providers';
 import JsonLd from '@/components/Seo/JsonLd';
-import { ASSETS } from '@/lib/assets';
 import {
   BRAND,
   DEFAULT_OG_IMAGE,
@@ -14,21 +13,6 @@ import {
   buildOrganizationJsonLd,
   buildWebsiteJsonLd,
 } from '@/lib/seo';
-
-const fontSans = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-sans',
-  display: 'swap',
-});
-
-const fontHeading = Arapey({
-  subsets: ['latin'],
-  weight: '400',
-  style: ['normal', 'italic'],
-  variable: '--font-heading',
-  display: 'swap',
-});
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -42,8 +26,8 @@ export const metadata = {
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
       { url: '/icon.png', type: 'image/png', sizes: '512x512' },
-      { url: ASSETS.mainLogo, type: 'image/svg+xml' },
     ],
     shortcut: '/favicon.ico',
     apple: [{ url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }],
@@ -76,7 +60,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en-IN" className={`${fontSans.variable} ${fontHeading.variable}`}>
+    <html lang="en-IN" className={fontVariables}>
       <body className={fontSans.className}>
         <JsonLd data={[buildOrganizationJsonLd(), buildWebsiteJsonLd()]} />
         <Providers>

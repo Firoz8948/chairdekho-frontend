@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
-const CART_STORAGE_KEY = 'lansdowne_cart_v1';
+const CART_STORAGE_KEY = 'chairdekho_cart_v1';
 
 const CartContext = createContext(null);
 

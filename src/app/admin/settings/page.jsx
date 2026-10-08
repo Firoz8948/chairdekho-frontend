@@ -8,9 +8,9 @@ import productStyles from '../products/products.module.css';
 import styles from './settings.module.css';
 
 const DEFAULTS = {
-  brand_name: 'Lansdowne Leather',
-  phone: '8979543500',
-  email: 'lansdowneleather1@gmail.com',
+  brand_name: 'ChairDekho',
+  phone: '9699164131',
+  email: 'brjangu29@gmail.com',
   locked: true,
   otp_enabled: false,
   order_sms_enabled: false,

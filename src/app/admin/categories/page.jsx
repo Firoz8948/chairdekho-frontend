@@ -16,6 +16,7 @@ import {
   Layers,
 } from 'lucide-react';
 import adminService from '@/lib/services/admin';
+import { FEATURES } from '@/lib/features';
 import styles from './categories.module.css';
 
 const resolveImageUrl = (url) => {
@@ -56,7 +57,8 @@ export default function CategoriesAdminPage() {
     try {
       setLoading(true);
       const data = await adminService.getCategories();
-      setCategories(Array.isArray(data) ? data : []);
+      const list = Array.isArray(data) ? data : [];
+      setCategories(FEATURES.watchAndShop ? list : list.filter((c) => !c.is_reels));
     } catch (err) {
       toast.error(err.message || 'Failed to load categories');
     } finally {
@@ -389,7 +391,7 @@ export default function CategoriesAdminPage() {
                   <input
                     type="text"
                     required
-                    placeholder="e.g. Leather Wallets, Signature Bags"
+                    placeholder="e.g. Plastic Chairs, Office Chairs"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className={styles.formInput}

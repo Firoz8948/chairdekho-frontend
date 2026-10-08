@@ -505,8 +505,8 @@ export default function EditProductPage() {
                 Supports plain text or HTML. You can use HTML for bullet lists and images.
               </p>
               <div className={styles.codeExample}>{`<ul>
-  <li>Stylist</li>
-  <li>Elegance</li>
+  <li>Sturdy build</li>
+  <li>Easy to clean</li>
 </ul>`}</div>
               <textarea
                 className={`${styles.formTextarea} ${styles.formTextareaTall}`}

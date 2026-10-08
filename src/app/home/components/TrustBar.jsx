@@ -5,13 +5,13 @@ export default function TrustBar() {
   const items = [
     {
       icon: <ShieldCheck size={22} />,
-      title: 'Authentic Quality',
-      desc: '100% genuine craftsmanship',
+      title: 'Quality Checked',
+      desc: 'Sturdy chairs, every piece inspected',
     },
     {
       icon: <Truck size={22} />,
-      title: 'Express Delivery',
-      desc: 'Fast dispatch across India',
+      title: 'Fast Local Delivery',
+      desc: 'Quick delivery in Vasai Virar',
     },
     {
       icon: <RotateCcw size={22} />,

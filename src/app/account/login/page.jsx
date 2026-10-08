@@ -3,7 +3,7 @@ import CustomerLoginScreen from './CustomerLoginScreen';
 
 export const metadata = {
   title: 'Login',
-  description: 'Sign in to your Lansdowne Leather account with mobile OTP.',
+  description: 'Log in to ChairDekho with your mobile number and OTP.',
   robots: { index: false, follow: true },
 };
 
@@ -16,8 +16,8 @@ export default function CustomerLoginPage() {
             minHeight: '100vh',
             display: 'grid',
             placeItems: 'center',
-            background: '#0f172a',
-            color: '#fff',
+            background: '#ffffff',
+            color: '#000000',
           }}
         >
           Loading…

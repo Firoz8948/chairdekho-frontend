@@ -5,9 +5,9 @@ import PageHeroBanner from '@/components/PageHeroBanner/PageHeroBanner';
 import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
-  title: 'Returns & Refunds Policy | Lansdowne Leather',
+  title: 'Returns & Refunds Policy | ChairDekho',
   description:
-    'Learn about Lansdowne Leather return eligibility, refund timelines, exchange process, and how to initiate a return.',
+    'Learn about ChairDekho return eligibility, refund timelines, exchange process, and how to initiate a return.',
   path: '/policy/refund-policy',
 });
 
@@ -53,7 +53,7 @@ export default function RefundPolicyPage() {
           <div className={styles.steps}>
             <div className={styles.step}>
               <span className={styles.stepNumber}>1</span>
-              <span className={styles.stepText}>Contact our support team at <strong>lansdowneleather1@gmail.com</strong> or call <strong>+91 89795 43500</strong> with your order number and reason for return.</span>
+              <span className={styles.stepText}>Contact our support team at <strong>brjangu29@gmail.com</strong> or call <strong>+91 96991 64131</strong> with your order number and reason for return.</span>
             </div>
             <div className={styles.step}>
               <span className={styles.stepNumber}>2</span>
@@ -82,12 +82,12 @@ export default function RefundPolicyPage() {
             <li><strong>Cash on Delivery:</strong> Refund transferred to your bank account (NEFT/IMPS) within 7–10 business days</li>
           </ul>
           <p className={styles.paragraph}>
-            Please note that shipping charges (if applicable) are non-refundable unless the return is due to a defective or incorrect product.
+            As shipping is free on all orders, no shipping charges are deducted from your refund.
           </p>
 
           <h2 className={styles.sectionHeading}>5. Exchanges</h2>
           <p className={styles.paragraph}>
-            We offer exchanges for a different colour of the same product, or a different size for belts, subject to stock availability. To request an exchange, contact our support team within the 7-day return window. If the desired variant is unavailable, we will process a refund instead.
+            We offer exchanges for a different colour or model of chair, subject to stock availability. To request an exchange, contact our support team within the 7-day return window. If the desired variant is unavailable, we will process a refund instead.
           </p>
 
           <h2 className={styles.sectionHeading}>6. Damaged or Incorrect Products</h2>
@@ -105,8 +105,8 @@ export default function RefundPolicyPage() {
             For any return or refund-related queries, please reach out to us:
           </p>
           <ul className={styles.list}>
-            <li><strong>Email:</strong> lansdowneleather1@gmail.com</li>
-            <li><strong>Phone:</strong> +91 89795 43500</li>
+            <li><strong>Email:</strong> brjangu29@gmail.com</li>
+            <li><strong>Phone:</strong> +91 96991 64131</li>
             <li><strong>Hours:</strong> Mon – Sat, 10:00 AM – 7:00 PM IST</li>
           </ul>
         </div>

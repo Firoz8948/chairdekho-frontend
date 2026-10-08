@@ -1,0 +1,216 @@
+.railWrap {
+  --circle: clamp(140px, 12.5vw, 196px);
+  --rail-gap: clamp(20px, 2.4vw, 40px);
+  position: relative;
+}
+
+.rail {
+  display: flex;
+  gap: var(--rail-gap);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 6px 4px 8px;
+}
+
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+.item {
+  flex: 0 0 var(--circle);
+  width: var(--circle);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #000000;
+  scroll-snap-align: start;
+}
+
+/* Centres the row when everything fits, without clipping the first item once it overflows */
+.item:first-child {
+  margin-left: auto;
+}
+
+.item:last-child {
+  margin-right: auto;
+}
+
+.circle {
+  position: relative;
+  width: var(--circle);
+  height: var(--circle);
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--circle-bg, #f5efe9);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.item:focus-visible .circle {
+  box-shadow: 0 0 0 2px #5c3d2e, 0 10px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+}
+
+/* Hover effects only for real pointers on desktop; on touch screens a tap would leave them stuck */
+@media (hover: hover) and (min-width: 769px) {
+  .item:hover .circle {
+    box-shadow: 0 0 0 2px #5c3d2e, 0 10px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-3px);
+  }
+
+  .item:hover .image {
+    transform: scale(1.06);
+  }
+
+  .item:hover .name {
+    color: #5c3d2e;
+  }
+}
+
+/* Keep the inset ≥ ~10% or the corners of square, non-transparent images get clipped by the circle */
+.image {
+  width: 100%;
+  height: 100%;
+  padding: 10%;
+  object-fit: contain;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fallbackIcon {
+  width: 42%;
+  height: 42%;
+  color: #5c3d2e;
+  opacity: 0.85;
+}
+
+.name {
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color 0.2s ease;
+}
+/* ================= PAGINATION (matches the hero banner controls) ================= */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: clamp(16px, 2vw, 24px);
+}
+
+.arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: 999px !important;
+  background: #ffffff;
+  color: #000000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.arrow:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 999px !important;
+  background: rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.dotActive {
+  width: 24px;
+  background: #000000;
+}
+
+/* ================= SKELETON ================= */
+.skeleton {
+  background: linear-gradient(90deg, #f1ece7 25%, #e7ddd4 50%, #f1ece7 75%);
+  background-size: 200% 100%;
+  animation: railShimmer 1.6s infinite;
+  box-shadow: none;
+}
+
+.skeletonText {
+  width: 70%;
+  height: 12px;
+  border-radius: 6px;
+  background: #f1ece7;
+}
+
+@keyframes railShimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .railWrap {
+    --circle: clamp(96px, 27vw, 124px);
+    --rail-gap: 14px;
+  }
+
+  .rail {
+    padding-left: clamp(16px, 4vw, 24px);
+    padding-right: clamp(16px, 4vw, 24px);
+    scroll-padding-inline: clamp(16px, 4vw, 24px);
+  }
+
+  .item {
+    gap: 8px;
+  }
+
+  .name {
+    font-size: 0.78rem;
+  }
+
+  .controls {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rail {
+    scroll-behavior: auto;
+  }
+
+  .skeleton {
+    animation: none;
+  }
+}

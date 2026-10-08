@@ -25,8 +25,11 @@ jobs:
           script_stop: true
           script: |
             set -euo pipefail
-            cd /opt/lansdowne/frontend
+            cd /opt/chairdekho/frontend
             git fetch origin main
             git reset --hard origin/main
-            docker compose up -d --build
-            docker compose ps
+            # --env-file feeds NEXT_PUBLIC_* into the build args (they are baked in at build time)
+            docker compose --env-file .env.production up -d --build
+            docker compose --env-file .env.production ps
+            curl -fsS -o /dev/null --retry 15 --retry-delay 4 --retry-connrefused http://127.0.0.1:3000/
+            docker image prune -f

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import styles from './admin.module.css';
 import authService from '@/lib/services/auth';
+import { FEATURES } from '@/lib/features';
 
 /* ── SVG Icon Components (Lucide-style, 20x20) ── */
 
@@ -105,6 +106,14 @@ const IconMetafields = (p) => (
   </Icon>
 );
 
+const IconBanners = (p) => (
+  <Icon {...p}>
+    <rect x="2" y="5" width="20" height="14" rx="2" />
+    <circle cx="8" cy="10" r="1.5" />
+    <path d="m21 16-5-5-9 8" />
+  </Icon>
+);
+
 const IconLogout = (p) => (
   <Icon {...p}>
     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
@@ -146,8 +155,8 @@ const navSections = [
     items: [
       { href: '/admin/products', label: 'Products', icon: IconProducts },
       { href: '/admin/categories', label: 'Categories', icon: IconCategories },
-      { href: '/admin/feeds', label: 'Catalog Feeds', icon: IconFeeds },
-    ],
+      FEATURES.watchAndShop && { href: '/admin/feeds', label: 'Catalog Feeds', icon: IconFeeds },
+    ].filter(Boolean),
   },
   {
     label: 'Sales',
@@ -167,6 +176,7 @@ const navSections = [
   {
     label: 'Content',
     items: [
+      { href: '/admin/banners', label: 'Banners', icon: IconBanners },
       { href: '/admin/metafields', label: 'Metafields', icon: IconMetafields },
     ],
   },
@@ -239,7 +249,7 @@ export default function AdminShell({ children }) {
         }`}
       >
           <div className={styles.brandRow}>
-            {!(collapsed && !isMobile) && <div className={styles.brand}>Lansdowne Admin</div>}
+            {!(collapsed && !isMobile) && <div className={styles.brand}>ChairDekho Admin</div>}
             <button
               className={styles.collapseBtn}
               onClick={() => setCollapsed((c) => !c)}

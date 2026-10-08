@@ -1,21 +1,101 @@
+/* ================= TOP BAR ================= */
+.topBar {
+  background: #000000;
+  color: #f5f5f5;
+  font-family: var(--font-family-sans);
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+.topBarInner {
+  max-width: var(--container-2xl);
+  margin: 0 auto;
+  min-height: 38px;
+  padding: 6px var(--gutter-inline);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topBarMapLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.topBarMapLink:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.topBarTagline {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  transition: color var(--transition-fast);
+}
+
+.topBarMapLink:hover .topBarTagline {
+  color: #d9c2b0;
+}
+
+.topBarMapBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #000000;
+  transition: background-color var(--transition-fast), color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.topBarMapLink:hover .topBarMapBtn,
+.topBarMapLink:focus-visible .topBarMapBtn {
+  background: #5c3d2e;
+  color: #ffffff;
+  transform: translate(1px, -1px);
+}
+
+.topBarPhone {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: inherit;
+  white-space: nowrap;
+  transition: color var(--transition-fast);
+}
+
+.topBarPhone:hover {
+  color: #d9c2b0;
+}
+
+.topBarPhoneIcon {
+  flex-shrink: 0;
+}
+
+.topBarPhoneLabel {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.topBarPhoneNumber {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* ================= MAIN HEADER ================= */
 .header {
-  top: 0;
-  left: 0;
+  position: relative;
   z-index: 100;
   width: 100%;
+  background: #ffffff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-/* Home: overlay on hero */
-.headerHome {
-  position: absolute;
-  background: #ffffff;
-}
-
-/* All other pages: solid bar, content starts below */
-.headerSolid {
-  position: relative;
-  background: #ffffff;
 }
 
 .inner {
@@ -32,6 +112,7 @@
 .leftSection {
   display: flex;
   align-items: center;
+  gap: 14px;
   flex: 1;
 }
 
@@ -49,43 +130,6 @@
   flex: 1;
 }
 
-/* ================= LOGOS ================= */
-.textLogoLink {
-  display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.textLogoImg {
-  width: 136px;
-  height: 46px;
-  object-fit: contain;
-  filter: brightness(0);
-}
-
-.mainLogoLink {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #ffffff;
-  padding: 6px;
-  border-radius: 0;
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-}
-
-.mainLogoLink:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-}
-
-.mainLogoImg {
-  width: 64px;
-  height: 64px;
-  object-fit: contain;
-  background: #ffffff;
-}
-
 /* ================= DESKTOP NAVIGATION ================= */
 .desktopNav {
   display: flex;
@@ -93,21 +137,11 @@
   gap: clamp(24px, 2.2vw, 36px);
 }
 
-.leftNav {
-  flex: 1;
-  justify-content: flex-end;
-}
-
-.rightNav {
-  flex: 1;
-  justify-content: flex-start;
-}
-
 .navLink {
   font-family: var(--font-family-heading);
   font-size: var(--text-h3);
   font-weight: 400;
-  color: #0f172a;
+  color: #000000;
   transition: color var(--transition-fast);
   padding: 6px 2px;
   white-space: nowrap;
@@ -135,7 +169,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #0f172a;
+  color: #000000;
   padding: 6px;
   transition: color var(--transition-fast), transform var(--transition-fast);
 }
@@ -153,7 +187,7 @@
   height: 18px;
   padding: 0 5px;
   border-radius: 999px;
-  background: #0f172a;
+  background: #000000;
   color: #ffffff;
   font-size: 0.65rem;
   font-weight: 700;
@@ -173,7 +207,7 @@
   outline: none;
   box-shadow: none;
   cursor: pointer;
-  color: #0f172a;
+  color: #000000;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -189,7 +223,7 @@
 .drawerOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(4px);
   z-index: 200;
   animation: fadeIn 0.25s ease;
@@ -289,7 +323,7 @@
 
 .drawerAdminBtn {
   margin-top: 12px;
-  background-color: #0f172a;
+  background-color: #000000;
   color: #ffffff;
   text-align: center;
   padding: 12px;
@@ -304,6 +338,11 @@
   color: var(--text-subtle);
   font-size: var(--text-micro);
   text-align: center;
+}
+
+.drawerSocial {
+  justify-content: center;
+  margin-bottom: 14px;
 }
 
 .drawerOverlayClosing {
@@ -360,61 +399,30 @@
     box-shadow: none;
   }
 
-  .textLogoLink {
+  .leftSection {
+    gap: 12px;
+  }
+
+  .iconActions {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .topBar {
+    font-size: var(--text-micro);
+  }
+}
+
+@media (max-width: 600px) {
+  .topBarInner {
+    min-height: 34px;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 420px) {
+  .topBarPhoneLabel {
     display: none;
-  }
-
-  /* Home only: transparent overlay over hero */
-  .headerHome {
-    background: transparent;
-    border-bottom: none;
-  }
-
-  .headerHome .hamburgerBtn {
-    color: #ffffff;
-  }
-
-  .headerHome .mainLogoLink {
-    background: transparent;
-    box-shadow: none;
-  }
-
-  .headerHome .mainLogoLink:hover {
-    box-shadow: none;
-  }
-
-  .headerHome .mainLogoImg {
-    width: 46px;
-    height: 46px;
-    background: transparent;
-  }
-
-  .headerHome .iconBtn {
-    color: #ffffff;
-  }
-
-  /* Non-home pages: solid white navbar */
-  .headerSolid {
-    background: #ffffff;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  }
-
-  .headerSolid .hamburgerBtn {
-    color: #0f172a;
-  }
-
-  .headerSolid .mainLogoLink {
-    background: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-  }
-
-  .headerSolid .mainLogoImg {
-    width: 46px;
-    height: 46px;
-    background: #ffffff;
-  }
-
-  .headerSolid .iconBtn {
-    color: #0f172a;
   }
 }

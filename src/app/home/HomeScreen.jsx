@@ -2,12 +2,14 @@ import styles from './home.module.css';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import {
-  Hero,
+  HomeBanner,
   CategoryShowcase,
   ProductShowcase,
   WhyChooseUs,
   ReviewsShowcase,
-  Newsletter,
+  GoogleReviews,
+  WhoWeAre,
+  CategoryMarquee,
 } from './components';
 
 export default function HomeScreen() {
@@ -15,12 +17,14 @@ export default function HomeScreen() {
     <div className={styles.container}>
       <Header />
       <main className={styles.main}>
-        <Hero />
+        <HomeBanner />
         <CategoryShowcase />
         <ProductShowcase />
         <WhyChooseUs />
         <ReviewsShowcase />
-        <Newsletter />
+        <WhoWeAre />
+        <CategoryMarquee />
+        <GoogleReviews />
       </main>
       <Footer />
     </div>
