@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import JsonLd from '@/components/Seo/JsonLd';
+import { normalizeRouteSlug, productSlugApiPath } from '@/lib/productSlug';
 import {
   BRAND,
   buildBreadcrumbJsonLd,
@@ -11,8 +12,9 @@ import {
 import ProductDetailClient from './ProductDetailClient';
 
 async function loadProduct(slug) {
+  const normalizedSlug = normalizeRouteSlug(slug);
   const [productRes, defsRes] = await Promise.all([
-    fetchApi(`/products/${encodeURIComponent(slug)}`, { revalidate: 60 }),
+    fetchApi(productSlugApiPath(normalizedSlug), { revalidate: 60 }),
     fetchApi('/metafields/', { revalidate: 300 }),
   ]);
   return {

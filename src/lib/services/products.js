@@ -1,4 +1,5 @@
 import apiClient from '../api';
+import { productSlugApiPath } from '../productSlug';
 
 export const productService = {
   async getProducts(params = {}) {
@@ -6,7 +7,7 @@ export const productService = {
   },
 
   async getProduct(slugOrId) {
-    return apiClient.get(`/products/${slugOrId}`);
+    return apiClient.get(productSlugApiPath(slugOrId));
   },
 
   async getFeaturedProducts() {

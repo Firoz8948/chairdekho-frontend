@@ -6,7 +6,6 @@ import {
   CategoryShowcase,
   ProductShowcase,
   WhyChooseUs,
-  ReviewsShowcase,
   GoogleReviews,
   WhoWeAre,
   CategoryMarquee,
@@ -21,7 +20,6 @@ export default function HomeScreen() {
         <CategoryShowcase />
         <ProductShowcase />
         <WhyChooseUs />
-        <ReviewsShowcase />
         <WhoWeAre />
         <CategoryMarquee />
         <GoogleReviews />
