@@ -8,3 +8,12 @@ export const productEnquiryUrl = (productName, productPath) => {
   if (productPath) lines.push(absoluteUrl(productPath));
   return whatsappUrl(lines.join('\n'));
 };
+
+/** Pre-filled message for catalogue chair codes (e.g. CHAIRDEKHO-02 → CHAIRDEKHO_02). */
+export const catalogueEnquiryUrl = (chairCode) => {
+  const token = String(chairCode || '')
+    .trim()
+    .toUpperCase()
+    .replace(/-/g, '_');
+  return whatsappUrl(`Hi Chairdekho, we want to know more about ${token}`);
+};

@@ -6,7 +6,7 @@ import Footer from '@/components/Footer/Footer';
 import { CategoryShowcase } from '@/app/home/components';
 import catalogueService from '@/lib/services/catalogue';
 import styles from '../catalogue.module.css';
-import CatalogueProductCard from './CatalogueProductCard';
+import CatalogueCategoryProducts from './CatalogueCategoryProducts';
 import CatalogueDetailModal from './CatalogueDetailModal';
 
 export default function CatalogueScreen() {
@@ -45,15 +45,7 @@ export default function CatalogueScreen() {
               <h2 id={`cat-${block.id}`} className={styles.sectionTitle}>
                 {block.name}
               </h2>
-              <div className={styles.track}>
-                {block.products.map((product) => (
-                  <CatalogueProductCard
-                    key={product.id}
-                    product={product}
-                    onOpen={setSelected}
-                  />
-                ))}
-              </div>
+              <CatalogueCategoryProducts products={block.products} onOpen={setSelected} />
             </section>
           ))
         )}

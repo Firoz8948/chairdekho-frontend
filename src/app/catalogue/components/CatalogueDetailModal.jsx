@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { MapPin, X } from 'lucide-react';
 import { CONTACT } from '@/lib/seo';
 import { productSlugApiPath } from '@/lib/productSlug';
+import CatalogueWhatsAppLink from './CatalogueWhatsAppLink';
+import { catalogueDisplayPrice, chairCode, formatCataloguePrice } from './catalogueUtils';
 import styles from './catalogueModal.module.css';
 
 const resolveImageUrl = (url) => {
@@ -12,12 +14,6 @@ const resolveImageUrl = (url) => {
   if (url.startsWith('http://') || url.startsWith('https://')) return url;
   const base = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
   return `${base}${url.startsWith('/') ? '' : '/'}${url}`;
-};
-
-const formatPrice = (value) => {
-  const num = Number(value);
-  if (Number.isNaN(num)) return '—';
-  return `₹${num.toLocaleString('en-IN')}`;
 };
 
 export default function CatalogueDetailModal({ product, onClose }) {
@@ -57,8 +53,9 @@ export default function CatalogueDetailModal({ product, onClose }) {
 
   if (!product) return null;
 
-  const code = product.catalogue_code || `CHAIRDEKHO-${String(product.catalogue_number || 0).padStart(2, '0')}`;
+  const code = chairCode(product);
   const pdpHref = productSlugApiPath(product.slug);
+  const priceLabel = formatCataloguePrice(catalogueDisplayPrice(product));
 
   return (
     <div
@@ -73,47 +70,53 @@ export default function CatalogueDetailModal({ product, onClose }) {
           <X size={20} />
         </button>
 
-        <div
-          className={styles.hero}
-          onTouchStart={(e) => {
-            touchStart.current = e.changedTouches[0]?.clientX;
-          }}
-          onTouchEnd={(e) => {
-            const start = touchStart.current;
-            const end = e.changedTouches[0]?.clientX;
-            if (start == null || end == null) return;
-            const delta = end - start;
-            if (Math.abs(delta) < 40) return;
-            if (delta < 0) goNext();
-            else goPrev();
-          }}
-        >
-          {images[index] ? (
-            <img src={images[index]} alt="" className={styles.heroImage} draggable={false} />
-          ) : (
-            <div className={styles.heroImage} aria-hidden />
-          )}
-        </div>
-
-        {images.length > 1 ? (
-          <div className={styles.thumbs}>
-            {images.map((src, i) => (
-              <button
-                key={src}
-                type="button"
-                className={`${styles.thumb} ${i === index ? styles.thumbActive : ''}`}
-                onClick={() => setIndex(i)}
-                aria-label={`Image ${i + 1}`}
-              >
-                <img src={src} alt="" />
-              </button>
-            ))}
+        <div className={styles.mediaCol}>
+          <div
+            className={styles.hero}
+            onTouchStart={(e) => {
+              touchStart.current = e.changedTouches[0]?.clientX;
+            }}
+            onTouchEnd={(e) => {
+              const start = touchStart.current;
+              const end = e.changedTouches[0]?.clientX;
+              if (start == null || end == null) return;
+              const delta = end - start;
+              if (Math.abs(delta) < 40) return;
+              if (delta < 0) goNext();
+              else goPrev();
+            }}
+          >
+            {images[index] ? (
+              <img src={images[index]} alt="" className={styles.heroImage} draggable={false} />
+            ) : (
+              <div className={styles.heroImage} aria-hidden />
+            )}
           </div>
-        ) : null}
+
+          {images.length > 1 ? (
+            <div className={styles.thumbs}>
+              {images.map((src, i) => (
+                <button
+                  key={src}
+                  type="button"
+                  className={`${styles.thumb} ${i === index ? styles.thumbActive : ''}`}
+                  onClick={() => setIndex(i)}
+                  aria-label={`Image ${i + 1}`}
+                >
+                  <img src={src} alt="" />
+                </button>
+              ))}
+            </div>
+          ) : null}
+        </div>
 
         <div className={styles.meta}>
           <div className={styles.code}>{code}</div>
-          <div className={styles.price}>{formatPrice(product.display_price)}</div>
+
+          <div className={styles.priceRow}>
+            <div className={styles.price}>{priceLabel}</div>
+            <CatalogueWhatsAppLink chairCode={code} />
+          </div>
 
           <div className={styles.contactBlock}>
             <div>

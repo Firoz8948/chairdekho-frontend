@@ -1,6 +1,8 @@
 'use client';
 
 import ColorSwatches, { buildColorSwatchItems } from '@/components/ColorSwatches/ColorSwatches';
+import CatalogueWhatsAppLink from './CatalogueWhatsAppLink';
+import { catalogueDisplayPrice, chairCode, formatCataloguePrice } from './catalogueUtils';
 import styles from './catalogueCard.module.css';
 
 const resolveImageUrl = (url) => {
@@ -10,37 +12,42 @@ const resolveImageUrl = (url) => {
   return `${base}${url.startsWith('/') ? '' : '/'}${url}`;
 };
 
-function chairCode(product) {
-  if (product?.catalogue_code) return product.catalogue_code;
-  const n = product?.catalogue_number;
-  if (n != null && n !== '') {
-    return `CHAIRDEKHO-${String(n).padStart(2, '0')}`;
-  }
-  return 'CHAIRDEKHO-—';
-}
-
 export default function CatalogueProductCard({ product, onOpen }) {
   const image = resolveImageUrl(product?.images?.[0]);
   const swatches = buildColorSwatchItems(product);
   const code = chairCode(product);
+  const price = formatCataloguePrice(catalogueDisplayPrice(product));
 
   return (
-    <button type="button" className={styles.card} onClick={() => onOpen?.(product)} aria-label={code}>
-      <div className={styles.imageWrap}>
-        {image ? (
-          <img src={image} alt="" className={styles.image} loading="lazy" />
-        ) : (
-          <div className={styles.imagePlaceholder}>No image</div>
-        )}
+    <article className={styles.card}>
+      <button
+        type="button"
+        className={styles.cardMain}
+        onClick={() => onOpen?.(product)}
+        aria-label={`View ${code}`}
+      >
+        <div className={styles.imageWrap}>
+          {image ? (
+            <img src={image} alt="" className={styles.image} loading="lazy" />
+          ) : (
+            <div className={styles.imagePlaceholder}>No image</div>
+          )}
+        </div>
+        <div className={styles.body}>
+          {swatches.length > 0 ? (
+            <div className={styles.swatches}>
+              <ColorSwatches items={swatches} size="sm" stopPropagation />
+            </div>
+          ) : (
+            <div className={styles.swatchesPlaceholder} aria-hidden />
+          )}
+          <p className={styles.chairCode}>{code}</p>
+        </div>
+      </button>
+      <div className={styles.priceRow}>
+        <p className={styles.price}>{price}</p>
+        <CatalogueWhatsAppLink chairCode={code} size="sm" />
       </div>
-      <div className={styles.body}>
-        <p className={styles.chairCode}>{code}</p>
-        {swatches.length > 0 ? (
-          <div className={styles.swatches}>
-            <ColorSwatches items={swatches} size="sm" stopPropagation />
-          </div>
-        ) : null}
-      </div>
-    </button>
+    </article>
   );
 }

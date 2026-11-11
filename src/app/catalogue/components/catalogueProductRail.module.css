@@ -1,0 +1,28 @@
+.railWrap {
+  position: relative;
+}
+
+.rail {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 4px 2px 8px;
+}
+
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .rail {
+    padding-left: clamp(16px, 4vw, 24px);
+    padding-right: clamp(16px, 4vw, 24px);
+    scroll-padding-inline: clamp(16px, 4vw, 24px);
+  }
+}
