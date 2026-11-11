@@ -144,7 +144,7 @@ export default function Header() {
         </div>
       </header>
 
-      <CategoryNav />
+      {pathname !== '/catalogue' && <CategoryNav />}
 
       {/* ================= MOBILE DRAWER MENU ================= */}
       {(mobileMenuOpen || mobileMenuClosing) && (
